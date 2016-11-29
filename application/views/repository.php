@@ -30,12 +30,6 @@
 			    $("#tagList").load("<?php echo base_url("?c=repository&m=loadTags");?>");
 			    
 			  });
-			  
-			$(document).ready(function(){
-				 $( "#closebutton" ).click(function() {
-  alert('close');
-});
-			});  
 	</script>
 </head>
 
@@ -218,8 +212,6 @@
 		$('#associatedTags').on('click', '.remove', function() {
         $(this).closest('span.taglist').remove();
     });
-
-
       
 	</script>
   </body>

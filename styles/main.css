@@ -234,4 +234,39 @@ th.roomno{
 	cursor:pointer;
 }		
 
+ol {
+    display: block;
+    list-style-type: decimal;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+
+li.results {
+    font: 18px Helvetica, Verdana, sans-serif;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    padding: 10px;
+    padding-bottom:0px;
+    list-style-type:none
+}
+
+li.results a {
+  text-decoration: none;
+  color: #000;
+  display: block;
+  width: 100%;
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+}
+ 
+li.results a:hover {
+  font-size: 25px;
+  background: #f6f6f6;
+}
 
