@@ -25,12 +25,13 @@
     <![endif]-->
 	<script type="text/javascript" src="http://library.marist.edu/js/libraryMenu.js"></script>
 	<script type="text/javascript" src="http://library.marist.edu/crrs/js/jquery-ui.js"></script>
-	<script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<!--script>
     		$(document).ready(function(){
 			    $("#tagList").load("<?php echo base_url("?c=repository&m=loadTags");?>");
 			    
 			  });
-	</script>
+	</script-->
 </head>
 
   <body>
@@ -103,11 +104,11 @@
 
 <!-- Appended Input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Tag">Add a tag</label>
+  <label class="col-md-4 control-label" for="Tag">Add a subject heading</label>
   <div class="col-md-4">
     <div class="input-group">
-    	<div id="tagList"></div>
-      <!--input id="tag" name="tag" class="form-control" placeholder=" " type="text"-->
+    	<!--div id="tagList"></div-->
+      <input id="subjects" name="tag" class="form-control" placeholder=" " type="text">
      <button id="Add" name="Add" class="btn btn-primary" type="button" style="margin-top: 10px; margin-bottom: -19px; background: #333;">Add</button> 
     </div>
     <p class="help-block"> </p>
@@ -116,7 +117,7 @@
 
 <!-- Textarea -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="textarea">Associated Tags</label>
+  <label class="col-md-4 control-label" for="textarea">Associated subject headings</label>
   <div class="col-md-4">                     
     <!--textarea class="form-control" id="associatedTags" name="textarea" style="height: 100px;"></textarea-->
     <ul class="form-control" id="associatedTags" style="height: 150px; overflow: auto; width: 400px;">
@@ -187,8 +188,8 @@
 		});
 		
 		$("#Add").click(function(){
-			var newtag = $('input#tags').val();
-			if ($('input#tags').val() == ""){
+			var newtag = $('input#subjects').val();
+			if ($('input#subjects').val() == ""){
 				alert('Please select or enter a new tag to add.');
 			}else{
 				$.post("<?php echo base_url("?c=repository&m=addATag"); ?>",{tagname: newtag}).done(function(data){
@@ -197,7 +198,7 @@
 					{
 						//alert('Tag added successfully');
 						$('#associatedTags').append('<span class="taglist" style="border: 1px solid #cccccc; background: #eeeeee; padding: 5px; margin-right: 5px; margin-bottom: 5px;">'+ newtag +'<a href="#" class="remove"> X </a></span><br/><br/>');
-						$('input#tags').val('');	
+						$('input#subjects').val('');	
 						//$("#tagList").load("<!--?php echo base_url("?c=repository&m=loadTags");?>");						
 					}
 					else
@@ -209,9 +210,24 @@
 			
 		});
 		
-		$('#associatedTags').on('click', '.remove', function() {
+	$('#associatedTags').on('click', '.remove', function() {
         $(this).closest('span.taglist').remove();
     });
+    
+    $('#subjects').keypress(function(e){
+    	var subject = $(this).val() + e.key;
+    	var availableTags = [];
+ 		$.getJSON("http://fast.oclc.org/searchfast/fastsuggest?&query=" + subject + "&callback=?", function (data) {
+    	//console.log(data);
+		$.each(data.response.docs, function(k,v){
+			//console.log(v.suggestall);
+			availableTags.push(v.suggestall);
+		});
+   		});
+   		$( "#subjects" ).autocomplete({
+    	source: availableTags
+	    });
+	});	
       
 	</script>
   </body>
