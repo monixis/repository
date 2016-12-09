@@ -3,18 +3,19 @@
 		<ol id="list">
 			<?php
 				foreach ($result as $row) {
+					$id = $row -> id;
 					$title = $row -> title;
 					$name = $row -> name;
-					$url = $row -> url;
+					$date = $row -> date;
 			?>
 				<li class="results">
-					<a href="<?php echo $url; ?>" target="_blank"><?php echo $title; ?></a>
-					<p style="font-size: 12pt;"><?php echo $name; ?></p>
-					<p style="font-size: 12pt; margin-top: -10px;">Associted tags: </p>
+					<a href="<?php echo base_url("?c=repository&m=fileInfo&id=".$id)?>" target="_blank"><?php echo $title; ?></a></br>
+					<a href="<?php echo base_url("?c=repository&m=searchResultsByKeyWord&q=".$name)?>" style="font-size: 12pt;"><?php echo $name; ?></a></br>
+					<p style="font-size: 12pt; margin-top: -10px;">Updated On:"<?php echo $date?>"</p>
 				</li>
 			
 			<?php
 				}
 			?>	
-		</ol>
+		</ol></br>
 			  

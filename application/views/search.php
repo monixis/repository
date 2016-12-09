@@ -4,8 +4,8 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="apple-touch-icon" href="http://library.marist.edu/images/jac-m.png"/>
-		<link rel="shortcut icon" href="http://library.marist.edu/images/jac.png" />
+		<link rel="apple-touch-icon" href="http://library.marist.edu/images/box.png"/>
+		<link rel="shortcut icon" href="http://library.marist.edu/images/box.png" />
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="">
 		<meta name="author" content="">
@@ -27,16 +27,39 @@
 		<script type="text/javascript" src="http://library.marist.edu/crrs/js/jquery-ui.js"></script>
 		<link rel="stylesheet" href="http://library.marist.edu/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<?php
+
+		if(!empty($searchString)) {
+
+          $searchTerm = $searchString;
+		}else{
+			$searchTerm = "";
+		}
+
+		?>
+
+
 		<script>
-			$(document).ready(function(){
-var keywords = [];<?php
-foreach($keywords as $row){
-?>
-keywords.push('<?php echo $row -> keywords; ?>');<?php } ?>
-	$("#searchBox").autocomplete({
-		source : keywords
-	});
-	})
+			$(document).ready(function() {
+				var keywords = [];<?php
+				foreach($keywords as $row){
+				?>
+				keywords.push('<?php echo $row->keywords; ?>');<?php } ?>
+				$("#searchBox").autocomplete({
+					source: keywords
+				});
+
+
+				//$('input#searchBox')
+				var searchTerm = "<?php echo $searchTerm ?>";
+                document.getElementById('searchBox').value =searchTerm;
+				var searchTerm = searchTerm.replace(/ /g, "%20");
+				if(searchTerm != "") {
+					var resultUrl = "<?php echo base_url("?c=repository&m=searchKeyWords&q=")?>" + searchTerm;
+					$('#searchResults').load(resultUrl);
+				}
+			});
+
 		</script>
 	</head>
 
@@ -71,7 +94,7 @@ keywords.push('<?php echo $row -> keywords; ?>');<?php } ?>
 								</div>
 							</div>
 
-							<div id="searchResults" style="height: 300px;">
+							<div id="searchResults" style="float: inherit">
 
 							</div>
 
@@ -83,27 +106,28 @@ keywords.push('<?php echo $row -> keywords; ?>');<?php } ?>
 
 			<br>
 
-		</div>
+		</div></br>
 		<!-- main-container -->
-
-		<footer>
-			<p class = "foot">
+		<div class="container">
+			<p  class = "foot">
 				James A. Cannavino Library, 3399 North Road, Poughkeepsie, NY 12601; 845.575.3106
 				<br />
 				&#169; Copyright 2007-2016 Marist College. All Rights Reserved.
 
 				<a href="http://www.marist.edu/disclaimers.html" target="_blank" >Disclaimers</a> | <a href="http://www.marist.edu/privacy.html" target="_blank" >Privacy Policy</a> | <a href="http://library.marist.edu/ack.html?iframe=true&width=50%&height=62%" rel="prettyphoto[iframes]">Acknowledgements</a>
 			</p>
-		</footer>
 
-		<script type="text/javascript">
-			$('#initiateSearch').click(function(){
-				var searchTerm = $('input#searchBox').val();
-				var resultUrl = 'http://localhost/repository/?c=repository&m=searchByTag&q=' + searchTerm ;
-				$('#searchResults').load(resultUrl);
-				
-			});
-			
-		</script>
+</div>
+
 	</body>
+	<script type="text/javascript">
+		$('#initiateSearch').click(function(){
+			var searchTerm = $('input#searchBox').val();
+			var searchTerm = searchTerm.replace(/ /g,"%20");
+			var resultUrl = "<?php echo base_url("?c=repository&m=searchKeyWords&q=")?>"+searchTerm;
+			$('#searchResults').load(resultUrl);
+
+		});
+
+	</script>
 </html>

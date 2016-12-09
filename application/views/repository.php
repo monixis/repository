@@ -26,12 +26,7 @@
 	<script type="text/javascript" src="http://library.marist.edu/js/libraryMenu.js"></script>
 	<script type="text/javascript" src="http://library.marist.edu/crrs/js/jquery-ui.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	<!--script>
-    		$(document).ready(function(){
-			    $("#tagList").load("<?php echo base_url("?c=repository&m=loadTags");?>");
-			    
-			  });
-	</script-->
+
 </head>
 
   <body>
@@ -89,16 +84,16 @@
 <div class="form-group">
    <label class="col-md-4 control-label">Email address</label>
    <div class="col-md-4">
-       <input class="form-control" name="email" type="email" data-fv-emailaddress-message="The value is not a valid email address" />
+       <input class="form-control" name="email" id="email" type="email" data-fv-emailaddress-message="The value is not a valid email address" />
    </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Title">Title</label>  
+  <label class="col-md-4 control-label" for="Title">Title</label>
   <div class="col-md-5">
   <input id="title" name="title" type="text" placeholder="" class="form-control input-md" required="">
-    
+
   </div>
 </div>
 
@@ -109,7 +104,7 @@
     <div class="input-group">
     	<!--div id="tagList"></div-->
       <input id="subjects" name="tag" class="form-control" placeholder=" " type="text">
-     <button id="Add" name="Add" class="btn btn-primary" type="button" style="margin-top: 10px; margin-bottom: -19px; background: #333;">Add</button> 
+     <button id="Add" name="Add" class="btn btn-primary" type="button" style="margin-top: 10px; margin-bottom: -19px; background: #333;">Add</button>
     </div>
     <p class="help-block"> </p>
   </div>
@@ -118,20 +113,20 @@
 <!-- Textarea -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="textarea">Associated subject headings</label>
-  <div class="col-md-4">                     
+  <div class="col-md-4">
     <!--textarea class="form-control" id="associatedTags" name="textarea" style="height: 100px;"></textarea-->
     <ul class="form-control" id="associatedTags" style="height: 150px; overflow: auto; width: 400px;">
-    	
+
     </ul>
   </div>
 </div>
 
 <div class="form-group">
 <label class="col-md-4 control-label" for="Tags">Select paper</label>
-	<div class="col-md-4">                     
+	<div class="col-md-4">
 		<form action="" id='complete' enctype="multipart/form-data" method="post">
    			<div>
-       			<input name='fileToUpload' id='fileToUpload' class='btn' name="upload[]" type="file" /><br/>
+       			<input name='fileToUpload' id='fileToUpload' class='btn' type="file" /><br/>
        			<!--div id="fileList"></div-->
       		</div>
 		</form>
@@ -158,8 +153,7 @@
    		<br>
      
     </div> <!-- main-container -->
-    	
-    	<footer>
+    	<div  class="bottom_container">
         	<p class = "foot">
 				James A. Cannavino Library, 3399 North Road, Poughkeepsie, NY 12601; 845.575.3106		
 				<br />
@@ -167,28 +161,92 @@
 
 				<a href="http://www.marist.edu/disclaimers.html" target="_blank" >Disclaimers</a> | <a href="http://www.marist.edu/privacy.html" target="_blank" >Privacy Policy</a> | <a href="http://library.marist.edu/ack.html?iframe=true&width=50%&height=62%" rel="prettyphoto[iframes]">Acknowledgements</a>
 			</p>
-      	</footer>
-    
-   
+
+
+        </div>
 	<script type="text/javascript">
-		$("form").submit(function( event ){
-			var name = $('input#name').val();
-			var title = $('input#title').val();
-			var cwid = $('input#cwid').val();
-			$.post("<?php echo base_url("?c=repository&m=insertDetails"); ?>",{name: name, cwid: cwid, title: title}).done(function(data){
-					if(data == 1 )
-					{ 
-						alert('Paper uploaded successfully. You should receive a confirmation email shortly.');
-					} 
-					else
-					{
-						alert('Something went wrong. Please contact site administrator.');
-					}
-				});
-		});
-		
+
+           var tagList = new Array();
+$('button#upload').click(function(e) {
+
+    if($('input#fileToUpload')[0].files[0]) {
+        var filesize = $('input#fileToUpload')[0].files[0].size/1024/1024;
+        if (filesize <= 2.0) {
+
+
+            //var name = $('input#name').val();
+            //var title = $('input#title').val();
+            //var cwid = $('input#cwid').val();
+            var taglist = JSON.stringify(tagList);
+            var form_data = new FormData();
+            form_data.append('name', $('input#name').val());
+            form_data.append('title', $('input#title').val());
+            form_data.append('cwid', $('input#cwid').val());
+            form_data.append('email', $('input#email').val());
+            form_data.append('tags', taglist);
+            if ($('input#fileToUpload')[0].files[0]) {
+                form_data.append('file_attach', $('input#fileToUpload')[0].files[0]);
+            }
+            /*
+             form_data.append('file_attach' , $('input#file_attach')[0].files[0]);
+             */
+
+            $.ajax({
+
+                type: "POST",
+                url: "<?php echo base_url("?c=repository&m=insertDetails");?>",
+                data: form_data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                async: false,
+                success: function (data) {
+                    if (data > 0) {
+
+                        alert("PaperId#" + data + ": Paper has been uploaded successfully");
+                        //  $('#requestStatus').show().css('background', '#66cc00').append("#" + data + ": File has been uploaded successfully");
+
+                    } else {
+
+                        alert("Failure: Something went wrong. Please contact administrator");
+
+                        // $('#requestStatus').show().css('background', '#b31b1b').append("Something went wrong.Please contact adminstrator");
+
+                    }
+
+
+                    //load json data from server and output message
+                   // if (response.type == 'error') { //load json data from server and output message
+                     //   output = '<div class="error">' + response.text + '</div>';
+                    //} else {
+                        // $('.progress').addClass('hide');
+                        // $("#progressstatus").html("<p color='black'></p>");
+                      //  $('#requestStatus').show().css('background', '#66cc00').append("#" + userId + ": A User Agreement Form has been sent to " + userName);
+                        //      alert("success");
+                        //    alert('Paper uploaded successfully. You should receive a confirmation email shortly.');
+                        // output = '<div class="success">' + response.text + '</div>';
+                   // }
+                    // $("#contact_form #contact_results").hide().html(output).slideDown();
+                }
+
+            });
+        }
+
+        else {
+            e.preventDefault();
+            alert("uploaded file size should be less than 2MB");
+        }
+    }else{
+        e.preventDefault();
+        alert("Please select the paper to upload into repository");
+    }
+
+});
 		$("#Add").click(function(){
+
 			var newtag = $('input#subjects').val();
+
+            tagList.push(newtag);
 			if ($('input#subjects').val() == ""){
 				alert('Please select or enter a new tag to add.');
 			}else{
