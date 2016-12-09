@@ -1,1 +1,1 @@
-# Copy/UseAgreement System
+# Honors Thesis Repository
