@@ -27,95 +27,95 @@
     <script type="text/javascript" src="http://library.marist.edu/crrs/js/jquery-ui.js"></script>
     <link rel="stylesheet" href="http://library.marist.edu/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script>
-        $(document).ready(function(){
-
-        })
-    </script>
+    
     <style>
-        table {
+		table {.table-file-information > tbody > tr {
+			border-top: 1px solid rgb(221, 221, 221);
+		}
 
-        .table-file-information > tbody > tr {
-            border-top: 1px solid rgb(221, 221, 221);
-        }
+		.table-file-information > tbody > tr:first-child {
+			border-top: 0;
+		}
 
-        .table-file-information > tbody > tr:first-child {
-            border-top: 0;
-        }
+		.table-file-information > tbody > tr > td {
+			border-top: 0;
+		}
 
-        .table-file-information > tbody > tr > td {
-            border-top: 0;
-        }
-
-        }
+		}
 
     </style>
     <?php
-    foreach($paperinfo as $paper)
-    $title = $paper['title'];
-    $date = $paper['updatedate'];
-    $name = $paper['name'];
-    $url =  $paper['url'];
-
+	foreach ($paperinfo as $paper)
+		$title = $paper['title'];
+		$date = $paper['updatedate'];
+		$name = $paper['name'];
+		$url = $paper['url'];
     ?>
 </head>
 <body>
-<div align="center">
-    <div id="headerContainer">
-        <a href="http://library.marist.edu/" target="_self"> <div id="header"></div> </a>
-    </div>
-    <a class="menu-link" href="#menu"><img src="http://library.marist.edu/images/r-menu.png" style="width: 20px; margin-top: 4px;" /></a>
-    <div id="menu">
-        <div id="menuItems"></div>
-    </div>
-    <div id="miniMenu" style="width: 100%;border: 1px solid black; border-bottom: none;">
+<div id="headerContainer">
+			<a href="http://library.marist.edu/" target="_self"> <div id="header"></div> </a>
+		</div>
+		<a class="menu-link" href="#menu"><img src="http://library.marist.edu/images/r-menu.png" style="width: 20px; margin-top: 4px;" /></a>
+		<div id="menu">
+			<div id="menuItems"></div>
+		</div>
+		<div id="miniMenu" style="width: 100%;border: 1px solid black; border-bottom: none;">
 
-    </div>
-    </br></br>
-    <div class="col-md-12">
-        <h2 style="text-align: center; margin: 30px; font-size: 40px;">Honor's Thesis Repository</h2>
-        </div></br></br>
-   <iframe src="<?php echo $url ?>"  style=" width:1200px; height:700px ;frameborder="0"></iframe></br></br></br></br></br></br>
-    <div align="center" style=" width:600px; height:400px ; class="container">
-        <table class="table table-file-information">
-            <thead>
-            <tr><h4>Details</h4></tr>
-            </thead></br>
-            <tbody>
-            <tr>
-                <td class ="col-md-2">Title:</td><td> <?php echo $title ?></td>
-            </tr>
-            <tr>
-                <td class ="col-md-2" >Submited By:</td> <td><?php echo $name ?></td>
-            </tr>
-            <tr>
-                <td class ="col-md-2" >Submitted On:</td> <td><?php echo $date ?></td>
-            </tr>
-            <tr>
-                <td class ="col-md-2"> Associated Tags:</td> <td>
-                    <?php
-                    foreach ($associatedTags as $associatedTag){?>
-                       <a href="<?php echo base_url("?c=repository&m=searchResultsByTag&q=".$associatedTag['tag']);?>"> <?php echo $associatedTag['tag'].","; ?> </a>
+		</div>
 
-                    <?php  } ?></td>
-            </tr>
+		<!-- Main jumbotron for a primary marketing message or call to action -->
+		<div id="main-container" class="container">
+			<div class="jumbotron">
+				<div class="container" style="margin-top: -36px;">
+					<!-- Example row of columns -->
+					<div class="row">
+						<div class="col-md-12">
+							<h2 style="text-align: center; margin: 30px; font-size: 40px;">Honor's Thesis Repository</h2>
+								<div>
+									 <table class="table table-file-information">
+            							<thead>
+            								<tr><h4>Details:</h4></tr>
+            							</thead>
+            							<tbody>
+            								<tr>
+                								<td class ="col-md-2">Title:</td><td> <?php echo $title ?></td>
+            								</tr>
+            								<tr>
+                								<td class ="col-md-2" >Submited By:</td> <td><a href="<?php echo base_url("?c=repository&m=searchResultsByKeyWord&q=".$name);?>"><?php echo $name ?></a></td>
+      										</tr>
+            								<tr>
+                								<td class ="col-md-2" >Submitted On:</td> <td><?php echo $date ?></td>
+            								</tr>
+            								<tr>
+                								<td class ="col-md-2"> Associated Tags:</td>
+                								<td>
+                    								<?php
+                    									foreach ($associatedTags as $associatedTag){?><a href="<?php echo base_url("?c=repository&m=searchResultsByTag&q=" . $associatedTag['tag']); ?>"> <?php echo $associatedTag['tag'] . " , "; ?> </a><?php  } ?>
+                    							</td>
+                    						</tr>
+            							</tbody>
+            						</table>
+									<iframe src="<?php echo $url ?>" style="width:100%; height:700px;"></iframe>
+								</div>
+						</div>
+					</div><!-- row -->
+				</div><!-- container -->
+			</div>
+			<!-- jumbotron -->
 
-            </tbody></table>
-</div>
+		
+		</div></br>
+		<!-- main-container -->
+		<div class="container">
+			<p  class = "foot">
+				James A. Cannavino Library, 3399 North Road, Poughkeepsie, NY 12601; 845.575.3106
+				<br />
+				&#169; Copyright 2007-2016 Marist College. All Rights Reserved.
 
-
-</div>
-<br>
-<footer>
-    <p class = "foot">
-        James A. Cannavino Library, 3399 North Road, Poughkeepsie, NY 12601; 845.575.3106
-        <br />
-        &#169; Copyright 2007-2016 Marist College. All Rights Reserved.
-
-        <a href="http://www.marist.edu/disclaimers.html" target="_blank" >Disclaimers</a> | <a href="http://www.marist.edu/privacy.html" target="_blank" >Privacy Policy</a> | <a href="http://library.marist.edu/ack.html?iframe=true&width=50%&height=62%" rel="prettyphoto[iframes]">Acknowledgements</a>
-    </p>
-</footer>
+				<a href="http://www.marist.edu/disclaimers.html" target="_blank" >Disclaimers</a> | <a href="http://www.marist.edu/privacy.html" target="_blank" >Privacy Policy</a> | <a href="http://library.marist.edu/ack.html?iframe=true&width=50%&height=62%" rel="prettyphoto[iframes]">Acknowledgements</a>
+			</p>
+		</div>
 </body>
-
-    </html>
+</html>
 
