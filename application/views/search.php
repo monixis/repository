@@ -82,7 +82,7 @@
 					<!-- Example row of columns -->
 					<div class="row">
 						<div class="col-md-12">
-							<h2 style="text-align: center; margin: 30px; font-size: 40px;">Honor's Thesis Repository</h2>
+							<h2 style="text-align: center; margin: 30px; font-size: 40px;">Honors Thesis Repository</h2>
 							<!--input type="text" id="searchBox" placeholder="Search Honor's Thesis Repository" /-->
 							<div id="custom-search-input">
 								<div class="input-group col-md-12">

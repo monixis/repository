@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://library.marist.edu/repository/';
+$config['base_url']	= 'http://localhost:9090/repository/';
 
 
 /*

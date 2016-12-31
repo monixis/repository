@@ -4,8 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="apple-touch-icon" href="http://library.marist.edu/images/jac-m.png"/>
     <link rel="shortcut icon" href="http://library.marist.edu/images/jac.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
@@ -18,6 +21,7 @@
     <link href="http://library.marist.edu/css/library.css" rel="stylesheet">
     <link href="http://library.marist.edu/css/menuStyle.css" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -33,10 +37,11 @@
         })
     </script>
     <style>
+/*
         table {
 
         .table-file-information > tbody > tr {
-            border-top: 1px solid rgb(221, 221, 221);
+            border-top: 1px solid rgba(104, 1, 255, 0);
         }
 
         .table-file-information > tbody > tr:first-child {
@@ -48,6 +53,7 @@
         }
 
         }
+*/
 
     </style>
     <?php
@@ -56,11 +62,12 @@
     $date = $paper['updatedate'];
     $name = $paper['name'];
     $url =  $paper['url'];
+    $abstract = $paper['abstract'];
 
     ?>
 </head>
 <body>
-<div align="center">
+<div>
     <div id="headerContainer">
         <a href="http://library.marist.edu/" target="_self"> <div id="header"></div> </a>
     </div>
@@ -71,28 +78,37 @@
     <div id="miniMenu" style="width: 100%;border: 1px solid black; border-bottom: none;">
 
     </div>
-    </br></br>
+
     <div class="col-md-12">
-        <h2 style="text-align: center; margin: 30px; font-size: 40px;">Honor's Thesis Repository</h2>
-        </div></br></br>
-   <iframe src="<?php echo $url ?>"  style=" width:1200px; height:700px ;frameborder="0"></iframe></br></br></br></br></br></br>
-    <div align="center" style=" width:600px; height:400px ; class="container">
-        <table class="table table-file-information">
+        <h2 style="text-align: center; margin: 30px; font-size: 40px;">Honors Thesis Repository</h2>
+        </div></br>
+    <div class="col-md-12">
+
+        <h5 style="text-align: center; margin: 30px; font-size: 20px;">Title: <?php echo $title?></h5>
+    </div>
+
+    <div class="container">
+        <table class="table">
+
+            <h4 style="font-color:: #b31b1b;"  align="left">Details:</h4>
             <thead>
-            <tr><h4>Details</h4></tr>
+            <tr></tr>
             </thead></br>
             <tbody>
+            <!--tr>
+                <td class ="col-md-2">Title:</td><td> <!--?php echo $title ?></td>
+            </tr-->
             <tr>
-                <td class ="col-md-2">Title:</td><td> <?php echo $title ?></td>
+                 <td class ="col-md-2" >Submited By</td> <td><a href="<?php echo base_url("?c=repository&m=searchResultsByKeyWord&q=".$name);?>"><?php echo $name ?></a></td>
             </tr>
             <tr>
-                <td class ="col-md-2" >Submited By:</td> <td><?php echo $name ?></td>
+                <td class ="col-md-2" >Submitted On</td> <td><?php echo $date ?></td>
             </tr>
             <tr>
-                <td class ="col-md-2" >Submitted On:</td> <td><?php echo $date ?></td>
+                <td class ="col-md-2" >Abstract</td> <td><?php echo $abstract ?></td>
             </tr>
             <tr>
-                <td class ="col-md-2"> Associated Tags:</td> <td>
+                <td class ="col-md-2"> Associated Tags</td> <td>
                     <?php
                     foreach ($associatedTags as $associatedTag){?>
                        <a href="<?php echo base_url("?c=repository&m=searchResultsByTag&q=".$associatedTag['tag']);?>"> <?php echo $associatedTag['tag'].","; ?> </a>
@@ -100,7 +116,9 @@
                     <?php  } ?></td>
             </tr>
 
-            </tbody></table>
+            </tbody></table></br>
+        <iframe align="center" src="<?php echo $url ?>"  style=" width:100%; height:700px ;frameborder="0"></iframe></br></br>
+
 </div>
 
 
