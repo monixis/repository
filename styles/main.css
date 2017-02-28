@@ -232,7 +232,7 @@ th.roomno{
 
 .rcontents:hover{
 	cursor:pointer;
-}		
+}
 
 ol {
     display: block;
@@ -264,7 +264,7 @@ li.results a {
   -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
   transition: font-size 0.3s ease, background-color 0.3s ease;
 }
- 
+
 li.results a:hover {
   font-size: 25px;
   background: #f6f6f6;

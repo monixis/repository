@@ -10,9 +10,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Honor's Thesis Repository</title>
-<!--	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
--->      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <!-- Bootstrap core CSS -->
+      <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+<!--      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+--><!--      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+-->    <!-- Bootstrap core CSS -->
     <link href="http://library.marist.edu/css/bootstrap.css" rel="stylesheet">
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -130,7 +132,6 @@
   </div>
 </div>
 
-
 <div class="form-group">
 <label class="col-md-4 control-label" for="Tags">Select paper</label>
 	<div class="col-md-4">
@@ -172,7 +173,6 @@
 				<a href="http://www.marist.edu/disclaimers.html" target="_blank" >Disclaimers</a> | <a href="http://www.marist.edu/privacy.html" target="_blank" >Privacy Policy</a> | <a href="http://library.marist.edu/ack.html?iframe=true&width=50%&height=62%" rel="prettyphoto[iframes]">Acknowledgements</a>
 			</p>
 
-
         </div>
 	<script type="text/javascript">
         var tagList = new Array();
@@ -202,7 +202,6 @@
             var extension = $('input#fileToUpload')[0].files[0].name.split('.').pop().toLowerCase();  //file extension from input file
                 isSuccess = fileTypes.indexOf(extension) > -1;
 
-
         // });
 
         /*          var name =    $('input#name').val();
@@ -217,8 +216,6 @@
                     if ($('input#fileToUpload')[0].files[0]) {
                         var filesize = $('input#fileToUpload')[0].files[0].size / 1024 / 1024;
                         if (filesize <= 2.0) {
-
-
                             var form_data = new FormData();
                             form_data.append('name', $('input#name').val());
                             form_data.append('title', $('input#title').val());
@@ -230,17 +227,13 @@
 
                                 form_data.append('file_attach', $('input#fileToUpload')[0].files[0]);
                             }
-
-
                             $.ajax({
-
                                 type: "POST",
-                                url: "<?php echo base_url("?c=repository&m=insertDetails");?>",
+                                url: "<?php echo base_url("?c=repository&m=insertDetails ");?>",
                                 data: form_data,
                                 processData: false,
                                 contentType: false,
                                 cache: false,
-                                async: false,
                                 success: function (data) {
                                     if (data > 0) {
 
@@ -255,44 +248,115 @@
 
                                     }
 
-
-                                    //load json data from server and output message
-                                    // if (response.type == 'error') { //load json data from server and output message
-                                    //   output = '<div class="error">' + response.text + '</div>';
-                                    //} else {
-                                    // $('.progress').addClass('hide');
-                                    // $("#progressstatus").html("<p color='black'></p>");
-                                    //  $('#requestStatus').show().css('background', '#66cc00').append("#" + userId + ": A User Agreement Form has been sent to " + userName);
-                                    //      alert("success");
-                                    //    alert('Paper uploaded successfully. You should receive a confirmation email shortly.');
-                                    // output = '<div class="success">' + response.text + '</div>';
-                                    // }
-                                    // $("#contact_form #contact_results").hide().html(output).slideDown();
                                 }
 
                             });
-                        }
-
-                        else {
+                        }else{
                             e.preventDefault();
                             alert("uploaded file size should be less than 2MB");
+
                         }
-                    } else {
+                    }else{
+
                         e.preventDefault();
                         alert("Please select the paper to upload into repository");
                     }
-                } else {
+
+                }else{
+
                     e.preventDefault();
                     alert("Please fill the requied fields");
-
                 }
 
+
             }else{
+
                 e.preventDefault();
                 alert("Please add atleast one subject heading");
-
             }
+
+                /*
+                            if(tagList.length>0) {
+                                var taglist = JSON.stringify(tagList);
+                                if ($('input#name').val() && $('input#title').val() && $('input#cwid').val() && $('input#email').val()) {
+                                    if ($('input#fileToUpload')[0].files[0]) {
+                                        var filesize = $('input#fileToUpload')[0].files[0].size / 1024 / 1024;
+                                        if (filesize <= 2.0) {
+
+
+                                            var form_data = new FormData();
+                                            form_data.append('name', $('input#name').val());
+                                            form_data.append('title', $('input#title').val());
+                                            form_data.append('cwid', $('input#cwid').val());
+                                            form_data.append('email', $('input#email').val());
+                                            form_data.append('abstract', $('textarea#word_count').val());
+                                            form_data.append('tags', taglist);
+                                            if ($('input#fileToUpload')[0].files[0]) {
+
+                                                form_data.append('file_attach', $('input#fileToUpload')[0].files[0]);
+                                            }
+
+                                            $.ajax({
+                                                type: "POST",
+                                                url: "<!--?php echo base_url("?c=repository&m=insertDetails");?>",
+                                                data: form_data,
+                                                processData: false,
+                                                contentType: false,
+                                                cache: false,
+                                                success: function (data) {
+                                                    if (data > 0) {
+
+                                                        alert("PaperId#" + data + ": Paper has been uploaded successfully");
+                                                        //  $('#requestStatus').show().css('background', '#66cc00').append("#" + data + ": File has been uploaded successfully");
+
+                                                    } else {
+
+                                                        alert("Failure: Something went wrong. Please contact administrator");
+
+                                                        // $('#requestStatus').show().css('background', '#b31b1b').append("Something went wrong.Please contact adminstrator");
+
+                                                    }
+
+
+                                                    //load json data from server and output message
+                                                    // if (response.type == 'error') { //load json data from server and output message
+                                                    //   output = '<div class="error">' + response.text + '</div>';
+                                                    //} else {
+                                                    // $('.progress').addClass('hide');
+                                                    // $("#progressstatus").html("<p color='black'></p>");
+                                                    //  $('#requestStatus').show().css('background', '#66cc00').append("#" + userId + ": A User Agreement Form has been sent to " + userName);
+                                                    //      alert("success");
+                                                    //    alert('Paper uploaded successfully. You should receive a confirmation email shortly.');
+                                                    // output = '<div class="success">' + response.text + '</div>';
+                                                    // }
+                                                    // $("#contact_form #contact_results").hide().html(output).slideDown();
+                                                }
+
+                                            });
+                                        }
+
+                                        else {
+                                            e.preventDefault();
+                                            alert("uploaded file size should be less than 2MB");
+                                        }
+                                    } else {
+                                        e.preventDefault();
+                                        alert("Please select the paper to upload into repository");
+                                    }
+                                } else {
+                                    e.preventDefault();
+                                    alert("Please fill the requied fields");
+
+                                }
+
+                            }else{
+                                e.preventDefault();
+                                alert("Please add atleast one subject heading");
+
+                            }
+                */
             }else{
+
             e.preventDefault();
             alert("Please upload pdf file only");
 
@@ -302,7 +366,6 @@
 
             e.preventDefault();
             alert("Failed:Please upload a paper");
-
         }
 });
 		$("#Add").click(function(){
@@ -317,7 +380,7 @@
 					//alert(data);
 					if(data > 0)
 					{
-						//alert('Tag added successfully');
+						//alert('Tag addeid successfully');
 						$('#associatedTags').append('<span class="taglist" style="border: 1px solid #cccccc; background: #eeeeee; padding: 5px; margin-right: 5px; margin-bottom: 5px;">'+ newtag +'<a href="#" class="remove"> X </a></span><br/><br/>');
 						$('input#subjects').val('');	
 						//$("#tagList").load("<!--?php echo base_url("?c=repository&m=loadTags");?>");						
@@ -335,11 +398,11 @@
         $(this).closest('span.taglist').remove();
 
       //  alert($(this).closest('span.taglist').text().replace('X',''));
-        var  removetag = $(this).closest('span.taglist').text().replace('X','');
-        var removeIndex = tagList.indexOf(removetag.trim());
-        if(removeIndex> -1) {
-            tagList.splice(removeIndex, 1);
-        }
+       // var  removetag = $(this).closest('span.taglist').text().replace('X','');
+       // var removeIndex = tagList.indexOf(removetag.trim());
+        //if(removeIndex> -1) {
+         //   tagList.splice(removeIndex, 1);
+        //}
 
     });
         $("#word_count").keydown(function(e){

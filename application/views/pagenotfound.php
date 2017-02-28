@@ -30,43 +30,35 @@
     <script type="text/javascript" src="http://library.marist.edu/js/libraryMenu.js"></script>
     <script type="text/javascript" src="http://library.marist.edu/crrs/js/jquery-ui.js"></script>
     <link rel="stylesheet" href="http://library.marist.edu/font-awesome/css/font-awesome.min.css">
-     <script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script>
         $(document).ready(function(){
 
         })
     </script>
     <style>
-/*
-        table {
+        /*
+                table {
 
-        .table-file-information > tbody > tr {
-            border-top: 1px solid rgba(104, 1, 255, 0);
-        }
+                .table-file-information > tbody > tr {
+                    border-top: 1px solid rgba(104, 1, 255, 0);
+                }
 
-        .table-file-information > tbody > tr:first-child {
-            border-top: 0;
-        }
+                .table-file-information > tbody > tr:first-child {
+                    border-top: 0;
+                }
 
-        .table-file-information > tbody > tr > td {
-            border-top: 0;
-        }
+                .table-file-information > tbody > tr > td {
+                    border-top: 0;
+                }
 
-        }
-*/
+                }
+        */
 
     </style>
-    <?php
-    foreach($paperinfo as $paper)
-    $title = $paper['title'];
-    $date = $paper['updatedate'];
-    $name = $paper['name'];
-    $url =  $paper['url'];
-    $abstract = $paper['abstract'];
-
-    ?>
 </head>
 <body>
-<div>
+<div align="center">
     <div id="headerContainer">
         <a href="http://library.marist.edu/" target="_self"> <div id="header"></div> </a>
     </div>
@@ -80,45 +72,12 @@
 
     <div class="col-md-12">
         <h2 style="text-align: center; margin: 30px; font-size: 40px;">Honors Thesis Repository</h2>
-        </div></br>
-    <div class="col-md-12">
+    </div></br>
 
-        <h5 style="text-align: center; margin: 30px; font-size: 20px;">Title: <?php echo $title?></h5>
+    <div style="height: 300px" class="col-md-12">
+        <h4 style="text-align: center; margin: 30px; font-size: 30px;color: #b31b1b">404 - Page Not Found</h4></br>
+          <a class="button" href="<?php echo base_url() ;?>"><button class="btn btn-primary" style="background: #333;">Back</button></a>
     </div>
-
-    <div class="container">
-        <table class="table">
-
-            <h4 style="font-color:: #b31b1b;"  align="left">Details:</h4>
-            <thead>
-            <tr></tr>
-            </thead></br>
-            <tbody>
-            <!--tr>
-                <td class ="col-md-2">Title:</td><td> <!--?php echo $title ?></td>
-            </tr-->
-            <tr>
-                 <td class ="col-md-2" >Submited By</td> <td><a href="<?php echo base_url("?c=repository&m=searchResultsByKeyWord&q=".$name);?>"><?php echo $name ?></a></td>
-            </tr>
-            <tr>
-                <td class ="col-md-2" >Submitted On</td> <td><?php echo $date ?></td>
-            </tr>
-            <tr>
-                <td class ="col-md-2" >Abstract</td> <td><?php echo $abstract ?></td>
-            </tr>
-            <tr>
-                <td class ="col-md-2"> Associated Tags</td> <td>
-                    <?php
-                    foreach ($associatedTags as $associatedTag){?>
-                       <a href="<?php echo base_url("?c=repository&m=searchResultsByTag&q=".$associatedTag['tag']);?>"> <?php echo $associatedTag['tag'].","; ?> </a>
-
-                    <?php  } ?></td>
-            </tr>
-
-            </tbody></table></br>
-        <iframe align="center" src="<?php echo $url ?>"  style=" width:100%; height:700px ;frameborder="0"></iframe></br></br>
-
-</div>
 
 
 </div>
@@ -134,5 +93,5 @@
 </footer>
 </body>
 
-    </html>
+</html>
 
