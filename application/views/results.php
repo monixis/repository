@@ -15,20 +15,21 @@
 					$abstract = $row ->abstract;
 					$license = $row -> license;
 					$display = $row -> display;
+					$year = $row -> year;
 			?>
 				<li class="results">
-					<a href="<?php echo base_url("?c=repository&m=fileInfo&id=".$id)?>" target="_blank"><?php echo $title; ?></a></br>
+					<a href="<?php echo base_url("?c=repository&m=fileInfo&id=".$id)?>" target="_blank"><?php echo $title; ?> -  <?php echo $year; ?></a></br>
 					<a href="<?php echo base_url("?c=repository&m=searchResultsByKeyWord&q=".$name)?>" style="font-size: 12pt;"><span style="color: #b31b1b;font-weight:bold; ">Author: </span><?php echo $name; ?></a></br>
 					<p style="font-size: 12pt; margin-top: -10px;"> <span style="color: #b31b1b;font-weight:bold; ">Submitted On: </span><?php echo $date?></p>
-			     	<p class='abstract' style="font-size: 12pt;"> <span style="color: #b31b1b;font-weight:bold; ">Abstract: </span><?php echo $abstract?></p><a data-toggle="modal" href="#<?php echo $id?>">more</a></div></br>
+			     	<p class='abstract' style="font-size: 12pt;"> <span style="color: #b31b1b;font-weight:bold; ">Abstract: </span><?php echo $abstract?></p><!--a data-toggle="modal" href="#<?php echo $id?>">more</a--></br>
 					<p style="font-size: 8pt; margin-top: -10px;"><?php echo $display?> </p>
 				</li>
 
-					<div class="modal fade" id="<?php echo $id?>" role="dialog">
+					<!--div class="modal fade" id="<?php echo $id?>" role="dialog">
 						<div class="modal-dialog modal-lg">
 
 							<!-- Modal content-->
-							<div class="modal-content">
+							<!--div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									<h4 align="center" class="modal-title"><?php echo $title; ?></h4>
@@ -62,7 +63,7 @@
 <style>
 	.abstract{
 		width:100%;
-		height: 48px;
+		height: auto;
 		line-height: 1em;
 		margin-bottom: 50px;
 		overflow:hidden;

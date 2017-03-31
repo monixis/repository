@@ -42,6 +42,9 @@ $abstract = $paper['abstract'];
 $cwid = $paper['cwid'];
 $email = $paper['email'];
 $status = $paper['status'];
+$license = $paper['license'];
+$display = $paper['display'];
+$year = $paper['year'];
 ?>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -138,7 +141,10 @@ $status = $paper['status'];
                                 <td class ="col-md-2"><span style="color: #b31b1b;font-weight:bold; ">Title</span></td><td> <?php echo $title ?></td>
                             </tr>
                             <tr>
-                                <td class ="col-md-2" ><span style="color: #b31b1b;font-weight:bold; ">Submited By</span></td> <td><a href="<?php echo base_url("?c=repository&m=searchResultsByKeyWord&q=".$name);?>"><?php echo $name ?></a></td>
+                                <td class ="col-md-2"><span style="color: #b31b1b;font-weight:bold; ">Year</span></td><td> <?php echo $year ?></td>
+                            </tr>
+                            <tr>
+                                <td class ="col-md-2" ><span style="color: #b31b1b;font-weight:bold; ">Author</span></td> <td><a href="<?php echo base_url("?c=repository&m=searchResultsByKeyWord&q=".$name);?>"><?php echo $name ?></a></td>
                             </tr>
                             <tr>
                                 <td class ="col-md-2" ><span style="color: #b31b1b;font-weight:bold; ">CWID</span></td> <td><?php echo $cwid ?></td>
@@ -161,6 +167,9 @@ $status = $paper['status'];
 
                                     <?php  } ?></td>
                             </tr>
+                            <tr>
+            					<td class ="col-md-2" ><span style="color: #b31b1b;font-weight:bold; ">License</span></td> <td><?php echo $display ?></td>
+            				</tr>
 
                             </tbody></table></br>
 
@@ -196,7 +205,7 @@ $status = $paper['status'];
         <br />
         &#169; Copyright 2007-2016 Marist College. All Rights Reserved.
 
-        <a href="http://www.marist.edu/disclaimers.html" target="_blank" >Disclaimers</a> | <a href="http://www.marist.edu/privacy.html" target="_blank" >Privacy Policy</a> | <a href="http://library.marist.edu/ack.html?iframe=true&width=50%&height=62%" rel="prettyphoto[iframes]">Acknowledgements</a>
+        <a href="http://www.marist.edu/disclaimers.html" target="_blank" >Disclaimers</a> | <a href="http://www.marist.edu/privacy.html" target="_blank" >Privacy Policy</a> | <a href="http://library.marist.edu/repository/?c=repository&m=ack">Acknowledgements</a>
     </p>
 
 </div>
