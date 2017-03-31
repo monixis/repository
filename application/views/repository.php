@@ -208,6 +208,7 @@
         <br />
         &#169; Copyright 2007-2016 Marist College. All Rights Reserved.
 
+        <a href="http://www.marist.edu/disclaimers.html" target="_blank" >Disclaimers</a> | <a href="http://www.marist.edu/privacy.html" target="_blank" >Privacy Policy</a> | <a href="http://library.marist.edu/repository/?c=repository&m=ack">Acknowledgements</a>
     </p>
 
 </div>

@@ -59,6 +59,7 @@
     $abstract = $paper['abstract'];
 	$license = $paper['license'];
 	$display = $paper['display'];
+	$year = $paper['year'];
     ?>
 </head>
 <body>
@@ -79,7 +80,7 @@
         </div></br>
     <div class="col-md-12">
 
-        <h5 style="text-align: center; margin: 30px; font-size: 20px;">Title: <?php echo $title?></h5>
+        <h5 style="text-align: center; margin: 30px; font-size: 20px;">Title: <?php echo $title ?> - <?php echo $year ?></h5>
     </div>
 
     <div class="container">
@@ -94,7 +95,7 @@
                 <td class ="col-md-2">Title:</td><td> <!--?php echo $title ?></td>
             </tr-->
             <tr>
-                 <td class ="col-md-2" >Submited By</td> <td><a href="<?php echo base_url("?c=repository&m=searchResultsByKeyWord&q=".$name);?>"><?php echo $name ?></a></td>
+                 <td class ="col-md-2" >Author</td> <td><a href="<?php echo base_url("?c=repository&m=searchResultsByKeyWord&q=".$name);?>"><?php echo $name ?></a></td>
             </tr>
             <tr>
                 <td class ="col-md-2" >Submitted On</td> <td><?php echo $date ?></td>
@@ -124,7 +125,7 @@
         James A. Cannavino Library, 3399 North Road, Poughkeepsie, NY 12601; 845.575.3106
         <br />
         &#169; Copyright 2007-2016 Marist College. All Rights Reserved.
-        <a href="http://www.marist.edu/disclaimers.html" target="_blank" >Disclaimers</a> | <a href="http://www.marist.edu/privacy.html" target="_blank" >Privacy Policy</a> | <a href="http://library.marist.edu/ack.html?iframe=true&width=50%&height=62%" rel="prettyphoto[iframes]">Acknowledgements</a>
+        <a href="http://www.marist.edu/disclaimers.html" target="_blank" >Disclaimers</a> | <a href="http://www.marist.edu/privacy.html" target="_blank" >Privacy Policy</a> | <a href="http://library.marist.edu/repository/?c=repository&m=ack">Acknowledgements</a>
     </p>
 </footer>
 </body>
