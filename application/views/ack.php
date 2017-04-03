@@ -8,7 +8,7 @@ body {font-family: Helvetica,Arial;}
 	<body>
 		<h1>Acknowledgements</h1>
 		<p>
-			User Agreement system was developed by the Library Digital Development team.
+			Honors thesis repository was developed by the Library Digital Development team.
 		</p>
 
 		<ul>
