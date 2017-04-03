@@ -113,15 +113,15 @@
                                     <input id="title" name="title" type="text" placeholder="" class="form-control input-md" required="">
                                 </div>
                             </div>
-                            
-                             <div class="form-group">
+
+                            <div class="form-group">
                                 <label class="col-md-4 control-label" for="Year">Year</label>
                                 <div class="col-md-2">
                                     <input id="year" name="year" type="text" placeholder="" class="form-control input-md" required="">
 
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="textarea">Abstract</label>
                                 <div class="col-md-4">
@@ -231,7 +231,7 @@
     });
 
     $("form").submit(function( e ) {
-	   	
+
         var fileTypes = ['pdf'];
         if ($('input#fileToUpload')[0].files[0]) {
             var extension = $('input#fileToUpload')[0].files[0].name.split('.').pop().toLowerCase();  //file extension from input file
@@ -262,7 +262,7 @@
                                     file_data.append('file_attach', $('input#fileToUpload')[0].files[0]);
                                 }
                                 $('#loader').css('visibility','visible');
-        						$('fieldset').css('opacity','0.1');
+                                $('fieldset').css('opacity','0.1');
                                 $.ajax({
                                     type: "POST",
                                     url: "<?php echo base_url("?c=repository&m=insertDetails");?>",
@@ -271,9 +271,9 @@
                                     contentType: false,
                                     // cache: false,
                                     success: function (data) {
-                                    	
+
                                         if (data > 0) {
-                                           	   file_data.append('pageid', data);
+                                            file_data.append('pageid', data);
                                             $.ajax({
                                                 type: "POST",
                                                 url: "http://148.100.181.189/uploadtorepo/accept-file.php",
@@ -282,7 +282,7 @@
                                                 processData: false,
                                                 //cache: false,
                                                 success: function (message) {
-													
+
                                                     if(message) {
                                                         var email_data = new FormData();
                                                         email_data.append('name', $('input#name').val());
@@ -298,12 +298,12 @@
                                                             //    cache: false,
                                                             success: function (paperid) {
                                                                 if(paperid) {
-                                            						setTimeout(function(){
-                                                					$('#loader').css('visibility','hidden');
-                                                					$('fieldset').css('opacity','1');
-                                                					alert("PaperId #" + data + ": Paper has been uploaded successfully");
-                                                					location.reload();
-                                            					}, 6000);
+                                                                    setTimeout(function(){
+                                                                        $('#loader').css('visibility','hidden');
+                                                                        $('fieldset').css('opacity','1');
+                                                                        alert("PaperId #" + data + ": Paper has been uploaded successfully");
+                                                                        location.reload();
+                                                                    }, 6000);
                                                                     e.preventDefault();
                                                                 }else{
 

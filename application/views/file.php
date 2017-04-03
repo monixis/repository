@@ -139,9 +139,7 @@ $status = $paper['status'];
             </tr>
             </tbody></table></br>
         <iframe align="center" src="<?php echo $url ?>"  style=" width:100%; height:700px ;frameborder="0"></iframe></br></br>
-        <div id="resubmit" align="center">
-        <button id="resubmit"  name="resubmit"  class="btn btn-primary" type="button" style="background:#333;">Resubmit</button>
-        </div>
+
     </div>
 
 </div>

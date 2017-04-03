@@ -213,7 +213,7 @@ $year = $paper['year'];
 
     $('button#approve').click(function(){
 
-            var comments = $('textarea#comments').val();
+        var comments = $('textarea#comments').val();
         var name = "<?php echo $name;?>";
         var email= "<?php echo $email;?>";
         
