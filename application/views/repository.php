@@ -171,7 +171,7 @@
                                 <div class="col-md-4">
                                     <select class="form-control" id="licenseSelection">
                                         <option value='1'>Attribution CC BY</option>
-                                        <option value='2'>Attribution-NonCommercial CC BY-NC</option>
+                                        <!--option value='2'>Attribution-NonCommercial CC BY-NC</option-->
                                         <option value='3'>Limit to Marist Users</option>
                                     </select><br/>
                                     <textarea name="license" id="license" style="height: 150px; overflow: auto; width: 400px;" readonly></textarea>
