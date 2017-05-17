@@ -249,7 +249,7 @@
                                 form_data.append('title', $('input#title').val());
                                 form_data.append('cwid', $('input#cwid').val());
                                 form_data.append('email', $('input#email').val());
-                                form_data.append('abstract', $('textarea#word_count').val());
+                                form_data.append('abstract', $('textarea#word_count').val().replace(/'/g , "&#39"));
                                 form_data.append('tags', taglist);
                                 form_data.append('licenseId', $('#licenseSelection').val());
                                 form_data.append('year', $('input#year').val());
