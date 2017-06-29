@@ -18,6 +18,7 @@
 		<link href="http://library.marist.edu/css/library.css" rel="stylesheet">
 		<link href="http://library.marist.edu/css/menuStyle.css" rel="stylesheet">
 		<link href="styles/main.css" rel="stylesheet">
+
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -27,7 +28,7 @@
 		<script type="text/javascript" src="http://library.marist.edu/crrs/js/jquery-ui.js"></script>
 		<link rel="stylesheet" href="http://library.marist.edu/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-		
+		<script src="https://a2.muscache.com/airbnb/static/libs_jquery_2x-4c61948b1a5fa686ed70f7b9bf4a18c9.js" type="text/javascript"></script>
 	</head>
 
 	<body>
@@ -92,6 +93,7 @@
 <script type="text/javascript">
 		$('#initiateSearch').click(function(){
 			var searchTerm = $('input#searchBox').val();
+			var searchTerm = searchTerm.trim();
 			var searchTerm = searchTerm.replace(/ /g,"%20");
 			var resultUrl = "<?php echo base_url("?c=repository&m=searchKeyWords&key=")?>"+searchTerm;
 			$('#searchResults').load(resultUrl);
@@ -101,10 +103,34 @@
 			var key = e.which;
 			if(key == 13){
 				var searchTerm = $('input#searchBox').val();
+				var searchTerm = searchTerm.trim();
 				var searchTerm = searchTerm.replace(/ /g,"%20");
 				var resultUrl = "<?php echo base_url("?c=repository&m=searchKeyWords&key=")?>"+searchTerm;
 				$('#searchResults').load(resultUrl);
 			}
+		});
+		$(document).ready(function() {
+			var keywords = [];<?php
+			foreach($keywords as $row){
+			?>
+			keywords.push('<?php echo $row->keywords; ?>');<?php } ?>
+			$("#searchBox").autocomplete({
+				source: keywords
+			});
+			//$('input#searchBox')
+			var searchTerm = "<?php echo $searchString ?>";
+			document.getElementById('searchBox').value =searchTerm;
+			var searchTerm = searchTerm.replace(/ /g, "%20");
+			if(searchTerm != "") {
+				var resultUrl = "<?php echo base_url("?c=repository&m=searchKeyWords&key=")?>" + searchTerm;
+				$('#searchResults').load(resultUrl);
+			}
+
+			$('body').restive({
+				breakpoints: ['10000'],
+				classes: ['nb'],
+				turbo_classes: 'is_mobile=mobi,is_phone=phone,is_tablet=tablet,is_portrait=portrait,is_landscape=landscape'
+			});
 		});
 </script>
 </html>

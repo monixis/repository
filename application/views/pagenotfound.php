@@ -76,7 +76,7 @@
 
     <div style="height: 300px" class="col-md-12">
         <h4 style="text-align: center; margin: 30px; font-size: 30px;color: #b31b1b">404 - Page Not Found</h4></br>
-          <a class="button" href="<?php echo base_url() ;?>"><button class="btn btn-primary" style="background: #333;">Back</button></a>
+          <a class="button" href="<?php echo base_url() ;?>"><button class="btn btn-primary" style="background: #333;">Go Back</button></a>
     </div>
 
 

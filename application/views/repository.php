@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +10,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Honor's Thesis Repository</title>
+<!--    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+-->
+ <!--   <script
+        src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="http://library.marist.edu/css/bootstrap.css" rel="stylesheet">
@@ -83,20 +90,23 @@
                             <h2 style="text-align: center; margin: 30px; font-size: 40px;">Honors Thesis Repository</h2>
 
                             <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="textinput">Name</label>
+                            <div id='author' name="author" class="form-group">
+                                <label class="col-md-4 control-label" for="textinput">Author(s)</label>
                                 <div class="col-md-4">
                                     <input id="name" name="name" type="text" placeholder="" class="form-control input-md" required="">
 
                                 </div>
+                                <input type="button" style="background-color: #B31B1B ;color: white" value="+" name="add_author" id="add_author">
                             </div>
 
+
                             <!-- Text input-->
-                            <div class="form-group">
+                            <div id="cwid" name="cwid" class="form-group">
                                 <label class="col-md-4 control-label" for="textinput">CWID</label>
                                 <div class="col-md-4">
                                     <input id="cwid" name="cwid" type="text" placeholder="Your Marist Campus Wide Number" class="form-control input-md" required="">
                                 </div>
+
                             </div>
 
                             <div class="form-group">
@@ -119,6 +129,26 @@
                                 <div class="col-md-2">
                                     <input id="year" name="year" type="text" placeholder="" class="form-control input-md" required="">
 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="Tags">Select a Collection</label>
+                                <div class="col-md-4">
+                                    <select class="form-control" id="collectionSelection">
+                                        <?php foreach ($collections as $collection){ ?>
+                                            <option value='<?php echo $collection -> collection_id; ?>'><?php  echo $collection -> collection_name ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="Tags">Select a Department</label>
+                                <div class="col-md-4">
+                                    <select class="form-control" id="departmentSelection">
+                                        <?php foreach ($departments as $department){ ?>
+                                        <option value='<?php echo $department -> dept_id; ?>'><?php  echo $department -> name ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
 
@@ -149,23 +179,38 @@
                                 <div class="col-md-4">
                                     <!--textarea class="form-control" id="associatedTags" name="textarea" style="height: 100px;"></textarea-->
                                     <ul class="form-control" id="associatedTags" style="height: 150px; overflow: auto; width: 400px;">
-
                                     </ul>
                                 </div>
                             </div>
-
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="Tags">Select paper</label>
+                                <label class="col-md-4 control-label" for="upload">Select the upload option:</label>
+                                <div class="col-md-4">
+
+
+                                       <input type="radio" checked value="file" name="uploadRadio"><b> File(PDF only)</b>
+
+                                       <input type="radio" value="link" name="uploadRadio"><b> Link</b>
+
+                                    </div>
+                          </div>
+                            <div class="form-group" id="Upload">
+                                <label class="col-md-4 control-label" for="Tags"></label>
                                 <div class="col-md-4">
                                     <form action="" id='complete' enctype="multipart/form-data" method="post">
-                                        <div>
-                                            <input name='fileToUpload' id='fileToUpload' class='btn' type="file" /><br/>
+                                            <input name='fileToUpload' id='fileToUpload' style="display: block"  class='btn' type="file" />
+                                            <input id="linkToUpload" name="link" type="text" style="display: none; " class="form-control input-md" placeholder="Add a link">
+
                                             <!--div id="fileList"></div-->
-                                        </div>
                                     </form>
                                 </div>
                             </div>
 
+    <!--                        <div class="form-group" id="linkUpload" style="visibility: hidden">
+                                <label class="col-md-4 control-label" for="textInput">Add Link</label>
+                                <div class="col-md-4">
+
+                                </div>
+                            </div>-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="Tags">Select a license</label>
                                 <div class="col-md-4">
@@ -189,6 +234,9 @@
 
                             <!--/div-->
                         </fieldset>
+
+                            <!--                                    <input type="button" style="background-color: #B31B1B" value="-" id="remove_author"> -->
+
                     </form>
 
 
@@ -229,40 +277,85 @@
             }
         });
     });
+    $('input[type=radio][name=uploadRadio]').change(function() {
+
+        //  alert($('input[name="uploadRadio"]:checked', '#uploadType').val());
+
+        var uploadOption = $("input[name='uploadRadio']:checked").val();
+        if(uploadOption=="file"){
+
+            //$("div#linkUpload").replaceWith(fileUpload);
+             document.getElementById("fileToUpload").style.display= 'block';
+             document.getElementById("linkToUpload").style.display= 'none';
+
+        }else if(uploadOption=="link"){
+            //$("div#fileUpload").replaceWith(linkUpload);
+            document.getElementById("fileToUpload").style.display= 'none';
+            document.getElementById("linkToUpload").style.display= 'block';
+
+        }
+    });
 
     $("form").submit(function( e ) {
 
         var fileTypes = ['pdf'];
-        if ($('input#fileToUpload')[0].files[0]) {
+       /// if ($('input#fileToUpload')[0].files[0] || $('input#link').val()) {
+          if($('input#fileToUpload')[0].files[0]){
             var extension = $('input#fileToUpload')[0].files[0].name.split('.').pop().toLowerCase();  //file extension from input file
             isSuccess = fileTypes.indexOf(extension) > -1;
+              var name = $('input#name').val();
+            if(author_form_index  > 0){
+                for(var i = 1; i <= author_form_index; i++) {
+                    var str1 = "input#name";
+                    var str2 = str1.concat(i);
+                    name = name + ", " + $(str2).val();
+                }
 
-            if(isSuccess){
-                if(tagList.length>0) {
+            }
+            if (isSuccess) {
+                if (tagList.length > 0) {
                     var taglist = JSON.stringify(tagList);
                     if ($('input#name').val() && $('input#title').val() && $('input#cwid').val() && $('input#email').val()) {
+                        var name = $('input#name').val();
+                        var cwid = $('input#cwid').val();
+
+                        if(author_form_index  > 0){
+                            var str1 = "input#name";
+                            var str3 = "input#cwid";
+
+                            for(var i = 1; i <= author_form_index; i++) {
+                                var str2 = str1.concat(i);
+                                name = name + ", " + $(str2).val();
+                                var str2 = str3.concat(i);
+                                cwid = cwid+", "+ $(str2).val();
+                            }
+                        }
                         if ($('input#fileToUpload')[0].files[0]) {
                             var filesize = $('input#fileToUpload')[0].files[0].size / 1024 / 1024;
                             if (filesize <= 8.0) {
                                 var form_data = new FormData();
-                                form_data.append('name', $('input#name').val());
+                                form_data.append('name', name);
                                 form_data.append('title', $('input#title').val());
-                                form_data.append('cwid', $('input#cwid').val());
+                                form_data.append('cwid', cwid);
                                 form_data.append('email', $('input#email').val());
                                 form_data.append('abstract', $('textarea#word_count').val().replace(/'/g , "&#39"));
                                 form_data.append('tags', taglist);
                                 form_data.append('licenseId', $('#licenseSelection').val());
+                                form_data.append('deptId', $('#departmentSelection').val());
+                                form_data.append('collectionId', $('#collectionSelection').val());
                                 form_data.append('year', $('input#year').val());
-                                if ($('input#fileToUpload')[0].files[0]) {
+                                form_data.append('link', $('input#linkToUpload').val());
+
+                                // if ($('input#fileToUpload')[0].files[0]) {
 
                                     form_data.append('file_attach', $('input#fileToUpload')[0].files[0]);
-                                }
+                                //}
                                 var file_data = new FormData();
                                 if ($('input#fileToUpload')[0].files[0]) {
                                     file_data.append('file_attach', $('input#fileToUpload')[0].files[0]);
                                 }
-                                $('#loader').css('visibility','visible');
-                                $('fieldset').css('opacity','0.1');
+                                 $('#loader').css('visibility','visible');
+                                 $('fieldset').css('opacity','0.1');
                                 $.ajax({
                                     type: "POST",
                                     url: "<?php echo base_url("?c=repository&m=insertDetails");?>",
@@ -273,61 +366,77 @@
                                     success: function (data) {
 
                                         if (data > 0) {
-                                            file_data.append('pageid', data);
+
+/*
                                             $.ajax({
-                                                type: "POST",
-                                                url: "http://148.100.181.189/uploadtorepo/accept-file.php",
-                                                data: file_data,
-                                                contentType:false,
+                                                type: "GET",
+                                                url: "http://localhost:8983/solr/exploro-honors/dataimport?command=full-import&indent=on&wt=json",
+                                                data: "",
+                                                contentType: false,
                                                 processData: false,
-                                                //cache: false,
                                                 success: function (message) {
 
-                                                    if(message) {
-                                                        var email_data = new FormData();
-                                                        email_data.append('name', $('input#name').val());
-                                                        email_data.append('email', $('input#email').val());
-                                                        email_data.append('paperid', data);
-                                                        email_data.append('file_attach', $('input#fileToUpload')[0].files[0]);
-                                                        $.ajax({
-                                                            type: "POST",
-                                                            url: "<?php echo base_url("?c=repository&m=email_user");?>",
-                                                            data: email_data,
-                                                            contentType:false,
-                                                            processData: false,
-                                                            //    cache: false,
-                                                            success: function (paperid) {
-                                                                if(paperid) {
-                                                                    setTimeout(function(){
-                                                                        $('#loader').css('visibility','hidden');
-                                                                        $('fieldset').css('opacity','1');
-                                                                        alert("PaperId #" + data + ": Paper has been uploaded successfully");
-                                                                        location.reload();
-                                                                    }, 6000);
-                                                                    e.preventDefault();
-                                                                }else{
-
-                                                                    alert("Failure: 001 Something went wrong while uploading paper. Please contact administrator");
-                                                                }
-
-                                                            },
-                                                            async: false
-
-                                                        });
-
-                                                    }else{
-
-                                                        alert("Failure: 002  Something went wrong while uploading paper. Please contact administrator");
-                                                    }
-
                                                 },
-
                                                 async: false
 
                                             });
+*/
+
+                                             file_data.append('pageid', data);
+                                             $.ajax({
+                                             type: "POST",
+                                             url: "http://148.100.181.189/uploadtorepo/accept-file-test.php",
+                                             data: file_data,
+                                             contentType:false,
+                                             processData: false,
+                                             //cache: false,
+                                             success: function (message) {
+
+                                             if(message) {
+                                             var email_data = new FormData();
+                                             email_data.append('name', $('input#name').val());
+                                             email_data.append('email', $('input#email').val());
+                                             email_data.append('paperid', data);
+                                             email_data.append('file_attach', $('input#fileToUpload')[0].files[0]);
+                                             $.ajax({
+                                             type: "POST",
+                                             url: "<?php echo base_url("?c=repository&m=email_user");?>",
+                                             data: email_data,
+                                             contentType:false,
+                                             processData: false,
+                                             //    cache: false,
+                                             success: function (paperid) {
+                                             if(paperid) {
+                                             setTimeout(function(){
+                                             $('#loader').css('visibility','hidden');
+                                             $('fieldset').css('opacity','1');
+                                             alert("PaperId #" + data + ": Paper has been uploaded successfully");
+                                             location.reload();
+                                             }, 6000);
+                                             e.preventDefault();
+                                             }else{
+
+                                             alert("Failure: 001 Something went wrong while uploading paper. Please contact administrator");
+                                             }
+
+                                             },
+                                             async: false
+
+                                             });
+
+                                             }else{
+
+                                             alert("Failure: 002  Something went wrong while uploading paper. Please contact administrator");
+                                             }
+
+                                             },
+
+                                             async: false
+
+                                             });
 
 
-                                            $('#requestStatus').show().css('background', '#66cc00').append("#" + data + ": File has been uploaded successfully");
+                                             $('#requestStatus').show().css('background', '#66cc00').append("#" + data + ": File has been uploaded successfully");
 
 
                                         } else {
@@ -339,29 +448,118 @@
                                     }
                                 });
                                 return false;
-                            }else{
+                            } else {
                                 e.preventDefault();
                                 alert("Uploaded file size should be less than or equal to 8MB.");
                             }
-                        }else{
+                        } else {
                             e.preventDefault();
                             alert("Please select the paper to upload into repository.");
                         }
-                    }else{
+                    } else {
                         e.preventDefault();
                         alert("Please fill the requied fields.");
                     }
-                }else{
+                } else {
                     e.preventDefault();
                     alert("Please add atleast one subject heading.");
                 }
-            }else{
+            } else {
                 e.preventDefault();
                 alert("The file should be in the PDF format.");
             }
-        }else{
+         }else if($('input#linkToUpload').val()){
+              if (tagList.length > 0) {
+                  var taglist = JSON.stringify(tagList);
+                  if ($('input#name').val() && $('input#title').val() && $('input#cwid').val() && $('input#email').val()) {
+                      var name = $('input#name').val();
+                      var cwid = $('input#cwid').val();
+
+                      if(author_form_index  > 0){
+                          var str1 = "input#name";
+                          var str3 = "input#cwid";
+
+                          for(var i = 1; i <= author_form_index; i++) {
+                              var str2 = str1.concat(i);
+                              name = name + "," + $(str2).val();
+                              var str2 = str3.concat(i);
+                              cwid = cwid+","+ $(str2).val();
+                          }
+                      }
+                      var form_data = new FormData();
+                      form_data.append('name', name);
+                      form_data.append('title', $('input#title').val());
+                      form_data.append('cwid', cwid);
+                      form_data.append('email', $('input#email').val());
+                      form_data.append('abstract', $('textarea#word_count').val().replace(/'/g , "&#39"));
+                      form_data.append('tags', taglist);
+                      form_data.append('licenseId', $('#licenseSelection').val());
+                      form_data.append('deptId', $('#departmentSelection').val());
+                      form_data.append('collectionId', $('#collectionSelection').val());
+                      form_data.append('link', $('input#linkToUpload').val());
+                      form_data.append('year', $('input#year').val());
+                      $('#loader').css('visibility','visible');
+                      $('fieldset').css('opacity','0.1');
+                      $.ajax({
+                          type: "POST",
+                          url: "<?php echo base_url("?c=repository&m=insertDetails");?>",
+                          data: form_data,
+                          processData: false,
+                          contentType: false,
+                          // cache: false,
+                          success: function (data) {
+
+                              if (data > 0) {
+                                  var email_data = new FormData();
+                                  email_data.append('name', $('input#name').val());
+                                  email_data.append('email', $('input#email').val());
+                                  email_data.append('paperid', data);
+                                  email_data.append('link', $('input#linkToUpload').val());
+                                  $.ajax({
+                                      type: "POST",
+                                      url: "<?php echo base_url("?c=repository&m=email_user");?>",
+                                      data: email_data,
+                                      contentType:false,
+                                      processData: false,
+                                      //    cache: false,
+                                      success: function (paperid) {
+                                          if(paperid) {
+                                              setTimeout(function(){
+                                                  $('#loader').css('visibility','hidden');
+                                                  $('fieldset').css('opacity','1');
+                                                  alert("PaperId #" + data + ": Paper has been uploaded successfully");
+                                                  location.reload();
+                                              }, 6000);
+                                              e.preventDefault();
+                                          }else{
+
+                                              alert("Failure: 001 Something went wrong while uploading paper. Please contact administrator");
+                                          }
+
+                                      },
+                                      async: false
+
+                                  });
+                              }
+
+
+                          },
+                          async: false
+                      });
+                  }else{
+                      e.preventDefault();
+                      alert("Please fill the requied fields.");
+                  }
+
+              }else{
+                  e.preventDefault();
+                  alert("Please add atleast one subject heading.");
+
+              }
+
+          } else{
             e.preventDefault();
-            alert("Failed: Please select a paper to upload.");
+            alert("Failed: Please select a paper to upload (or) add a link to your work.");
         }
 
     });
@@ -369,8 +567,8 @@
     $("#Add").click(function(){
 
         var newtag = $('input#subjects').val();
+       // tagList.push(newtag);
 
-        tagList.push(newtag);
         if ($('input#subjects').val() == ""){
             alert('Please select or enter a new tag to add.');
         }else{
@@ -378,9 +576,12 @@
                 //alert(data);
                 if(data > 0)
                 {
+                     tagList.push(data);
+
                     //alert('Tag addeid successfully');
-                    $('#associatedTags').append('<span class="taglist" style="border: 1px solid #cccccc; background: #eeeeee; padding: 5px; margin-right: 5px; margin-bottom: 5px;">'+ newtag +'<a href="#" class="remove"> X </a></span><br/><br/>');
+                    $('#associatedTags').append('<span class="taglist" id='+ data +' style="border: 1px solid #cccccc; display: inline-block; background: #eeeeee; padding: 5px; margin-right: 5px; margin-bottom: 5px;">'+ newtag +'<a href="" class="remove"> X </a></span>');
                     $('input#subjects').val('');
+
                     //$("#tagList").load("<!--?php echo base_url("?c=repository&m=loadTags");?>");
                 }
                 else
@@ -392,8 +593,18 @@
 
     });
 
-    $('#associatedTags').on('click', '.remove', function() {
-        $(this).closest('span.taglist').remove();
+    $('#associatedTags').on('click', '.remove', function(e) {
+        var span =  $(this).closest('span.taglist');
+        span.remove();
+        e.preventDefault();
+
+        var tId = span.attr("id");
+        for (var i=tagList.length-1; i>=0; i--) {
+            if (tagList[i] === tId) {
+                tagList.splice(i, 1);
+
+            }
+        }
 
         //  alert($(this).closest('span.taglist').text().replace('X',''));
         // var  removetag = $(this).closest('span.taglist').text().replace('X','');
@@ -426,6 +637,18 @@
         });
     });
 
+
+    /* if(uploadOption=="file"){
+
+         document.getElementById("fileUpload").style.visibility= 'visible';
+         document.getElementById("linkUpload").style.visibility= 'hidden';
+
+     }else if(uploadOption=="link"){
+         document.getElementById("fileUpload").style.visibility= 'hidden';
+         document.getElementById("linkUpload").style.visibility= 'visible';
+
+     }*/
+
     $("select#licenseSelection").change(function () {
         var str = 0;
         $( "select option:selected" ).each(function() {
@@ -439,6 +662,62 @@
             $('#license').text('This license allows Marist users to download your works and share them with other Marist users as long as they credit the creator. They cannot change them in any way or use them commercially.');
         }
     }).change();
+
+        //We will be using an unique index number for each new instance of the cloned form
+        var author_form_index=0;
+        //When the button is clicked (or Enter is pressed while it's selected)
+        $("#add_author").click(function(){
+
+            //Increment the unique index cause we are creating a new instance of the form
+            author_form_index++;
+
+            //Clone the form and place it just before the button's <p>. Also give its id a unique index
+
+            if(author_form_index==1) {
+
+                $("#cwid").after($("#cwid").clone().attr("id", "cwid" + author_form_index).find("input:text").val("").end());
+                $("#cwid").after($("#author").clone().attr("id", "author" + author_form_index).find("input:text").val("").end());
+
+            }else if(author_form_index > 1){
+
+                var cwid = "#cwid"+(author_form_index-1);
+                $(cwid).after($("#cwid").clone().attr("id", "cwid" + author_form_index).find("input:text").val("").end());
+                $(cwid).after($("#author").clone().attr("id", "author" + author_form_index).find("input:text").val("").end());
+
+            }
+
+            //Make the clone visible by changing CSS
+
+            $("#author" + author_form_index).css("display","inline");
+            $("#cwid" + author_form_index).css("display","inline");
+
+            //For each input fields contained in the cloned form...
+            $("#author" + author_form_index + " :input").each(function(){
+                //Modify the name attribute by adding the index number at the end of it
+                $(this).attr("name",$(this).attr("name") + author_form_index);
+                //Modify the id attribute by adding the index number at the end of it
+                $(this).attr("id",$(this).attr("id") + author_form_index);
+            });
+            $("#cwid" + author_form_index + " :input").each(function(){
+                //Modify the name attribute by adding the index number at the end of it
+                $(this).attr("name",$(this).attr("name") + author_form_index);
+                //Modify the id attribute by adding the index number at the end of it
+                $(this).attr("id",$(this).attr("id") + author_form_index);
+            });
+            var remove_author = "<input type='button' style='background-color: #B31B1B;color: white' value='-' id='remove_author"+author_form_index+"'>";
+            $("#add_author"+author_form_index).replaceWith(remove_author);
+
+            //When the Remove button is clicked (or Enter is pressed while it's selected)
+            $("#remove_author" + author_form_index).click(function(){
+                //Remove the whole cloned div
+                $("#author" +author_form_index ).remove();
+                $("#cwid" +author_form_index ).remove();
+
+                author_form_index = author_form_index -1;
+            });
+        });
+
+
 
 </script>
 </body>

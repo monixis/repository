@@ -4,6 +4,7 @@ body, html {
 	background: #ffffff;
 	font-size: 14px;
 }
+#page-wrap							{ width: 800px; margin: 25px auto; }
 
 #keyTable {
 	position: relative;
@@ -159,12 +160,28 @@ iframe{
   padding: 10px 6px 10px 6px;
   text-decoration: none;
 }
-
 .btn:hover, .shortcutlink:hover, img.tooltip:hover, img.viewNotes:hover{
-  text-decoration: none;
-  opacity:0.5;
-  cursor: pointer;
+	text-decoration: none;
+	opacity:0.5;
+	cursor: pointer;
 }
+.vu {
+	-webkit-border-radius: 8;
+	-moz-border-radius: 8;
+	border-radius: 8px;
+	font-family: Georgia;
+	color: #ffffff;
+	font-size: 16px;
+	background: #727272;
+	padding: 10px 6px 10px 6px;
+	text-decoration: none;
+}
+.vu:hover, .shortcutlink:hover, img.tooltip:hover, img.viewNotes:hover{
+	text-decoration: none;
+	opacity:0.5;
+	cursor: pointer;
+}
+
 
 
 .details{
