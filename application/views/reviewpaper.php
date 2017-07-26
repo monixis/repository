@@ -224,6 +224,17 @@ $department = $paper['dept_name'];
                 comments:comments
             }).done(function (id) {
                 if(id>0) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: "http://35.162.165.138:8983/solr/repository/dataimport?command=full-import&indent=on&wt=json",
+                        data: "",
+                        contentType: false,
+                        processData: false,
+                        success: function (message) {
+                        },
+                        async: false
+                    });
                     alert("Approved Successfully");
                     location.reload();
                 }
