@@ -16,6 +16,22 @@
 	opacity: 0.5;
 	cursor: pointer;
 }
+.vu {
+	-webkit-border-radius: 8;
+	-moz-border-radius: 8;
+	border-radius: 8px;
+	font-family: Georgia;
+	color: #ffffff;
+	font-size: 16px;
+	background: #727272;
+	padding: 10px 6px 10px 6px;
+	text-decoration: none;
+}
+.vu:hover, .shortcutlink:hover, img.tooltip:hover, img.viewNotes:hover{
+	text-decoration: none;
+	opacity:0.5;
+	cursor: pointer;
+}
 .textinput {
 	width: 230px;
 	height: 16px;

@@ -60,6 +60,7 @@
 	$license = $paper['license'];
 	$display = $paper['display'];
 	$year = $paper['year'];
+    $department = $paper['dept_name'];
     ?>
 </head>
 <body>
@@ -102,6 +103,9 @@
             </tr>
             <tr>
                 <td class ="col-md-2" >Abstract</td> <td><?php echo $abstract ?></td>
+            </tr>
+            <tr>
+                <td class ="col-md-2" >Department</td> <td><?php echo $department ?></td>
             </tr>
             <tr>
                 <td class ="col-md-2"> Associated Tags</td> <td>

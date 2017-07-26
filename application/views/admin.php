@@ -2,9 +2,6 @@
 
 <div id="container" class="container">
     <div class="row bs-wizard" style="border-bottom:0;">
-
-
-
         <div id="step1" class="col-xs-4 bs-wizard-step disabled"><!-- complete -->
             <div class="text-center bs-wizard-stepnum">Submitted</div>
             <div class="progress"><div class="progress-bar"></div></div>
@@ -77,7 +74,7 @@
             </tbody>
         </table>
         <div align="right" id="NumRecords">
-            <label class="label" for="collection">Total:<?php echo $total_rows?></label>
+            <label class="label" style="color: #0c0c0c" for="collection">Total:<?php echo $total_rows?></label>
         </div>
         <nav class='text-center'>
             <?php echo $pagination_links; ?>
@@ -90,7 +87,7 @@
 <script>
     $("#status").change(function(){
         if ($(this).val() == "Submitted") {
-            var url = "<?php echo base_url("?c=repository&m=papers&status=1")?>";
+            var url = "<?php echo base_url("?c=repository&m=papers&status=1&dept_id=").$dept_id?>";
             document.getElementById('step1').className= "col-xs-4 bs-wizard-step complete";
             document.getElementById('step2').className= "col-xs-4 bs-wizard-step disabled";
             document.getElementById('step3').className= "col-xs-4 bs-wizard-step disabled";
@@ -101,7 +98,7 @@
             document.getElementById('step2').className= "col-xs-4 bs-wizard-stepp complete";
             document.getElementById('step3').className= "col-xs-4 bs-wizard-stepp complete";
 
-            var url = "<?php echo base_url("?c=repository&m=papers&status=2")?>";
+            var url = "<?php echo base_url("?c=repository&m=papers&status=2&dept_id=").$dept_id?>.";
             $("#the-content").load(url);
 
         }else if($(this).val() == "Returned"){
@@ -109,7 +106,7 @@
             document.getElementById('step2').className= "col-xs-4 bs-wizard-stp active";
             document.getElementById('step3').className= "col-xs-4 bs-wizard-stp disabled";
 
-            var url = "<?php echo base_url("?c=repository&m=papers&status=3")?>";
+            var url = "<?php echo base_url("?c=repository&m=papers&status=3&dept_id=").$dept_id?>";
             $("#the-content").load(url);
         }
         else if($(this).val() == "All") {
@@ -117,7 +114,7 @@
             document.getElementById('step2').className = "col-xs-4 bs-wizard-step disabled";
             document.getElementById('step3').className = "col-xs-4 bs-wizard-step disabled";
 
-            var url = "<?php echo base_url("?c=repository&m=pages")?>";
+            var url = "<?php echo base_url("?c=repository&m=pages&dept_id=").$dept_id?>";
             $("#the-content").load(url);
         }
     });

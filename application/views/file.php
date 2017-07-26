@@ -57,6 +57,7 @@ $abstract = $paper['abstract'];
 $cwid = $paper['cwid'];
 $email = $paper['email'];
 $status = $paper['status'];
+    $department = $paper['dept_name'];
 
     ?>
 </head>
@@ -128,6 +129,9 @@ $status = $paper['status'];
             </tr>
             <tr>
                 <td class ="col-md-2" >Abstract</td> <td><?php echo $abstract ?></td>
+            </tr>
+            <tr>
+                <td class ="col-md-2" >Department</td> <td><?php echo $department ?></td>
             </tr>
             <tr>
                 <td class ="col-md-2"> Associated Tags</td> <td>

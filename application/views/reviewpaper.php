@@ -25,6 +25,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 	<script type="text/javascript" src="http://library.marist.edu/js/libraryMenu.js"></script>
 	<script type="text/javascript" src="http://library.marist.edu/crrs/js/jquery-ui.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -45,6 +46,7 @@ $status = $paper['status'];
 $license = $paper['license'];
 $display = $paper['display'];
 $year = $paper['year'];
+$department = $paper['dept_name'];
 ?>
 <script type="text/javascript">
     $(document).ready(function() {
@@ -80,14 +82,10 @@ $year = $paper['year'];
                         <h4 style="text-align: center; margin: 30px; font-size: 20px;"><span style="color: #b31b1b;font-weight:bold; ">Review Paper</span></h4>
                     </div>
 
-
-
-
                     <div class="container">
 
                         <h3 style="color: #b31b1b;text-align: right; vertical-align:middle;line-height: 30px;">Paper ID : <?php echo $ID ?></h3>
                         <h3 style="color: #b31b1b;text-align: left; vertical-align:middle;line-height: 30px;">Paper Status</h3>
-
 
                         <div class="row">
                             <?php if($status==1) {?>
@@ -158,7 +156,9 @@ $year = $paper['year'];
                             <tr>
                                 <td class ="col-md-2" ><span style="color: #b31b1b;font-weight:bold; ">Abstract</span></td> <td><?php echo $abstract ?></td>
                             </tr>
-
+                            <tr>
+                                <td class ="col-md-2" ><span style="color: #b31b1b;font-weight:bold; ">Department</span></td> <td><?php echo $department ?></td>
+                            </tr>
                             <tr>
                                 <td class ="col-md-2"> <span style="color: #b31b1b;font-weight:bold; ">Associated Tags</span></td> <td>
                                     <?php
@@ -185,8 +185,8 @@ $year = $paper['year'];
                         <textarea id="comments" rows="8" cols="75" style="display: block; margin-bottom: 10px;"></textarea>
                       <?php } ?>
 
-                        <button id="approve" name="approve"  class="btn btn-primary" type="button" style="background:#333;">Approve</button>
-                        <button id="return" name="return" class="btn btn-primary" type="button" style="background:#333;">Return</button></br>
+                        <button id="approve" name="approve"  class="btn btn-primary" type="button" onclick="confirmApprove()" style="background:#333;">Approve</button>
+                        <button id="return" name="return" class="btn btn-primary" type="button" onclick="confirmDisapprove()" style="background:#333;">Return</button></br>
                      </div>
 
                 </div>
@@ -210,20 +210,62 @@ $year = $paper['year'];
 
 </div>
 <script type="text/javascript">
+    function confirmApprove() {
 
-    $('button#approve').click(function(){
+        var r = confirm("Are you sure you want to approve?");
+        if (r == true) {
+            var comments = $('textarea#comments').val();
+            var name = "<?php echo $name;?>";
+            var email= "<?php echo $email;?>";
+
+            $.post("<?php echo base_url("?c=repository&m=approvePaper&id=".$ID);?>", {
+                name:name,
+                email:email,
+                comments:comments
+            }).done(function (id) {
+                if(id>0) {
+                    alert("Approved Successfully");
+                    location.reload();
+                }
+            });
+        } else {
+
+        }
+    }
+    function confirmDisapprove(){
+        var r = confirm("Are you sure you want to return?");
+        if (r == true) {
+            var comments = $('textarea#comments').val();
+            var name = "<?php echo $name ?>";
+            var email ="<?php echo $email ?>";
+            $.post("<?php echo base_url("?c=repository&m=returnPaper&id=".$ID);?>", {
+                comments:comments,
+                name: name,
+                email:email
+            }).done(function (id) {
+                if(id>0) {
+                    alert("Returned Successfully");
+                    location.reload();
+                }
+            });
+        } else {
+
+        }
+
+    }
+    /*$('button#approve').click(function(){
 
         var comments = $('textarea#comments').val();
-        var name = "<?php echo $name;?>";
-        var email= "<?php echo $email;?>";
+        var name = "<!--?php echo $name;?>";
+        var email= "<!--?php echo $email;?>";
         
-        $.post("<?php echo base_url("?c=repository&m=approvePaper&id=".$ID);?>", {
+        $.post("<!--?php echo base_url("?c=repository&m=approvePaper&id=".$ID);?>", {
             name:name,
             email:email,
             comments:comments
         }).done(function (id) {
             if(id>0) {
-                alert("approved successfully");
+                alert("Approved Successfully");
                 location.reload();
             }
         });
@@ -231,19 +273,19 @@ $year = $paper['year'];
 
     $('button#return').click(function() {
         var comments = $('textarea#comments').val();
-        var name = "<?php echo $name ?>";
-        var email ="<?php echo $email ?>";
-        $.post("<?php echo base_url("?c=repository&m=returnPaper&id=".$ID);?>", {
+        var name = "<1--?php echo $name ?>";
+        var email ="<!--?php echo $email ?>";
+        $.post("<!--?php echo base_url("?c=repository&m=returnPaper&id=".$ID);?>", {
             comments:comments,
             name: name,
             email:email
         }).done(function (id) {
             if(id>0) {
-                alert("returned successfully");
+                alert("Returned Successfully");
                 location.reload();
             }
         });
-    });
+    });*/
 
 </script>
 </body>
