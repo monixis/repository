@@ -9,7 +9,8 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<title>Repository</title>
+
+		<title>Honors Program Thesis Repository</title>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<!-- Bootstrap core CSS -->
 		<link href="http://library.marist.edu/css/bootstrap.css" rel="stylesheet">
