@@ -2,24 +2,44 @@
 <meta charset="utf-8">
 <!--script type="text/javascript" src="http://library.marist.edu/crrs/js/jquery-ui.js"></script-->
 <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
 <script src="./js/jquery.easyPaginate.js"></script>
 <script src="./js/nprogress.js"></script>
-
-
 <style>
 	p.labelInfo {font-size: 10pt; margin-top: -10px;}
 	span.labelName {color: #b31b1b;font-weight:bold; }
 	.easyPaginateNav a {padding:5px;float: inherit}
 	.easyPaginateNav a.current {font-weight:bold;text-decoration:underline;}
+	@media all and (min-width:1100px) {
+
+		#facets {
+			width: 240px;
+			height: auto;
+			float: left;
+			margin-left: -240px;
+		}
+	}
+/*
+	@media all and (max-width:950px) {
+
+		#facets {
+
+			width: 100%;
+			float: left
+			height: 400px;
+		}
+	}
+*/
+
+
 </style>
 <link rel="stylesheet" type="text/css" href="./styles/main.css" />
 <link rel="stylesheet" type="text/css" href="./styles/nprogress.css" />
 
 	<h2>Results:</h2>
-		<div id="facets" style="width: 240px; height: auto; float: left; margin-left: -240px;">
+		<div id="facets">
 			<h4>Filter By:</h4>
 			<?php
 				$facets = (array) $results->facet_counts->facet_fields;
@@ -78,64 +98,57 @@
 	var acc = document.getElementsByClassName("accordion");
 	var i;
 
+    for (i = 0; i < acc.length; i++)
+    {
+        acc[i].onclick = function()
+        {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
 
-	for (i = 0; i < acc.length; i++)
-	{
-		acc[i].onclick = function()
-		{
-			this.classList.toggle("active");
-			var panel = this.nextElementSibling;
-			if (panel.style.display === "block") {
-				panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        }
+    }
 
-			} else {
-				panel.style.display = "block";
-			}
-		}
-	}
+    $('a.tags').click(function(){
+        var searchTerm = $('input#searchBox').val();
+        var selectedTag = ($(this).parents('div.panel').attr('id')) + ' : ' + ($(this).text().substr(0, $(this).text().indexOf('-')));
+        $('#selectedFacet').append('<button class="taglist" style="border: 1px solid #cccccc; background: #eeeeee; padding: 5px; margin-right: 10px; margin-top: 5px;">'+ selectedTag +'<a href="#" class="remove" id="'+ selectedTag +'" style="margin-left:10px;"> X </a></button>');
+        $('input#queryTag').val($('input#queryTag').val() + "fq=" + selectedTag);
+        var queryTag = $('input#queryTag').val();
+        searchTerm = searchTerm + queryTag;
+        searchTerm = searchTerm.replace(/ /g,"%20");
+        var resultUrl = "<?php echo base_url("?c=repository&m=searchKeyWords&key=")?>"+searchTerm;
+        NProgress.start();
+        NProgress.configure({ showSpinner: true });
+        $('#searchResults').load(resultUrl);
+        NProgress.done();
 
-		$('a.tags').click(function(){
+    });
 
+    $('#selectedFacet').on('click', '.remove', function() {
+        var searchTerm = $('input#searchBox').val();
+        var unselectedTag ="fq=" + $(this).attr('id');
+        $(this).closest('button.taglist').remove();
+        $('input#queryTag').val($('input#queryTag').val().replace(unselectedTag, ' '));
+        var queryTag = $('input#queryTag').val();
+        searchTerm = searchTerm + queryTag;
+        searchTerm = searchTerm.replace(/ /g,"%20");
+        NProgress.start();
+        NProgress.configure({ showSpinner: true });
+        var resultUrl = "<?php echo base_url("?c=repository&m=searchKeyWords&key=")?>"+searchTerm;
+        $('#searchResults').load(resultUrl);
+        NProgress.done();
+    });
 
-			var searchTerm = $('input#searchBox').val();
-			var selectedTag = ($(this).parents('div.panel').attr('id')) + ' : ' + ($(this).text().substr(0, $(this).text().indexOf('-')));
-			$('#selectedFacet').append('<button class="taglist" style="border: 1px solid #cccccc; background: #eeeeee; padding: 5px; margin-right: 10px; margin-top: 5px;">'+ selectedTag +'<a href="#" class="remove" id="'+ selectedTag +'" style="margin-left:10px;"> X </a></button>');
-			$('input#queryTag').val($('input#queryTag').val() + "fq=" + selectedTag);
-			var queryTag = $('input#queryTag').val();
-			searchTerm = searchTerm + queryTag;
-			searchTerm = searchTerm.replace(/ /g,"%20");
-			var resultUrl = "<?php echo base_url("?c=repository&m=searchKeyWords&key=")?>"+searchTerm;
-			NProgress.start();
-			NProgress.configure({ showSpinner: true });
-			$('#searchResults').load(resultUrl);
-				$(this).toggleClass('active');
-		//	$(this).toggleClass('expand');
-			NProgress.done();
-
-		});
-
-		$('#selectedFacet').on('click', '.remove', function() {
-			var searchTerm = $('input#searchBox').val();
-			var unselectedTag ="fq=" + $(this).attr('id');
-    	    $(this).closest('button.taglist').remove();
-    	    $('input#queryTag').val($('input#queryTag').val().replace(unselectedTag, ' '));
-			var queryTag = $('input#queryTag').val();
-			searchTerm = searchTerm + queryTag;
-			searchTerm = searchTerm.replace(/ /g,"%20");
-			NProgress.start();
-			NProgress.configure({ showSpinner: true });
-			var resultUrl = "<?php echo base_url("?c=repository&m=searchKeyWords&key=")?>"+searchTerm;
-			$('#searchResults').load(resultUrl);
-			$(this).toggleClass('active');
-			//$(this).toggleClass('expand');
-			NProgress.done();
-		});
-
-	    $('#tabs-1').easyPaginate({
-		   paginateElement: 'li',
-		   elementsPerPage: 10
-           /* effect: 'climb'*/
-	     });
+    $('#tabs-1').easyPaginate({
+        paginateElement: 'li',
+        elementsPerPage: 10
+        /* effect: 'climb'*/
+    });
 
 </script>
-			  
+

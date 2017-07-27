@@ -30,8 +30,21 @@
 		<link rel="stylesheet" href="http://library.marist.edu/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script src="https://a2.muscache.com/airbnb/static/libs_jquery_2x-4c61948b1a5fa686ed70f7b9bf4a18c9.js" type="text/javascript"></script>
-	</head>
+	<style>
+		@media all and (min-width:1000px) {
 
+
+		#searchResults{
+			width: 100%;
+			float: right;
+			clear: right;
+
+		}
+		}
+
+	</style>
+
+	</head>
 	<body>
 		<div id="headerContainer">
 			<a href="http://library.marist.edu/" target="_self"> <div id="header"></div> </a>
@@ -63,10 +76,10 @@
 										</button> </span>
 								</div>
 							</div>
-							<div id="selectedFacet">
+							<div id="selectedFacet" >
 							
 							</div>
-							<div id="searchResults" style="float: inherit">
+							<div id="searchResults" style="position: relative;display: inline-block">
 
 							</div>
 
@@ -127,11 +140,7 @@
 				$('#searchResults').load(resultUrl);
 			}
 
-			$('body').restive({
-				breakpoints: ['10000'],
-				classes: ['nb'],
-				turbo_classes: 'is_mobile=mobi,is_phone=phone,is_tablet=tablet,is_portrait=portrait,is_landscape=landscape'
-			});
+
 		});
 </script>
 </html>
