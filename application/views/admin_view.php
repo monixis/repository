@@ -58,9 +58,6 @@
 <div id="logout" align="right"><button id="logout" class="btn btn-primary">Logout</button></div>
 <div id="container" class="container">
     <div class="row bs-wizard" style="border-bottom:0;">
-
-
-
         <div id="step1" class="col-xs-4 bs-wizard-step disabled"><!-- complete -->
             <div class="text-center bs-wizard-stepnum">Submitted</div>
             <div class="progress"><div class="progress-bar"></div></div>
@@ -80,15 +77,12 @@
             <div class="bs-wizard-dot"></div>
         </div>
 
-
-
     </div></br>
     <div class="page-header">
         <h3 align="center">Honors Thesis Repository</h3></br>
         <h4 align="center"><?php if($department != ""){echo "(".$department.")"; }?></h4>
 
     </div>
-
     <label class="label" style="color: #0c0c0c" for="collection">Filter By Status:</label>
     <select id ="status" style="width: 100px;" >
         <option value="All" class="selectinput">All</option>

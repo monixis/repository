@@ -5,16 +5,6 @@ body, html {
 	font-size: 14px;
 }
 
-ol {
-    display: block;
-    list-style-type: decimal;
-    -webkit-margin-before: 1em;
-    -webkit-margin-after: 1em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-    -webkit-padding-start: 40px;
-}
-
 li.results {
     font: 18px Helvetica, Verdana, sans-serif;
     border-bottom: 1px solid #ccc;
@@ -101,5 +91,4 @@ button.accordion.active:after {
 	height: auto;
 
 }
-
 

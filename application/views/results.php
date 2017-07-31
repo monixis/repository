@@ -65,8 +65,8 @@
 				}
 			?>
 		</div>
-  <div id="tabs-1">
-  	<ol id="list">
+  <div id="tabs-1" style="margin-left: 42px;">
+  	<!--ol id="list"-->
 			<?php
 				foreach ($results->response->docs as $row) {
 					$title = $row -> Title;
@@ -90,7 +90,8 @@
 			<?php
 				}
 			?>	
-		</ol></br>
+		<!--/ol></br-->
+		<div id="pagination"></div>
 </div><!-- Tab 1 ends -->
 </br>
 	
@@ -144,11 +145,13 @@
         NProgress.done();
     });
 
-    $('#tabs-1').easyPaginate({
+   $('#tabs-1').easyPaginate({
         paginateElement: 'li',
         elementsPerPage: 10
         /* effect: 'climb'*/
-    });
+  });
+   
+
 
 </script>
 
