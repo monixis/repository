@@ -455,21 +455,11 @@ $abstract = $paper['abstract'];
 
                                             if (data > 0) {
 
-                                                $.ajax({
-                                                    type: "POST",
-                                                    url: "http://localhost:8983/solr/exploro-honors/dataimport?command=full-import&indent=on&wt=json",
-                                                    data: "",
-                                                    contentType: false,
-                                                    processData: false,
-                                                    success: function (message) {
-                                                    },
-                                                    async: false
-                                                });
 
                                                 file_data.append('pageid', data);
                                                 $.ajax({
                                                     type: "POST",
-                                                    url: "http://148.100.181.189/uploadtorepo/accept-file-test.php",
+                                                    url: "http://148.100.181.189/uploadtorepo/accept-file.php",
                                                     data: file_data,
                                                     contentType: false,
                                                     processData: false,
