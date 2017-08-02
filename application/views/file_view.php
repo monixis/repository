@@ -12,44 +12,26 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Honor's Thesis Repository</title>
+    <title>Honors Thesis Program Repository</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <!-- Bootstrap core CSS -->
-    <link href="http://library.marist.edu/css/bootstrap.css" rel="stylesheet">
+    <link href="styles/bootstrap.css" rel="stylesheet">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="http://library.marist.edu/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <link href="http://library.marist.edu/css/library.css" rel="stylesheet">
     <link href="http://library.marist.edu/css/menuStyle.css" rel="stylesheet">
     <link href="styles/main.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script type="text/javascript" src="http://library.marist.edu/js/libraryMenu.js"></script>
-    <script type="text/javascript" src="http://library.marist.edu/crrs/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="http://library.marist.edu/js/jquery-ui.js"></script>
     <link rel="stylesheet" href="http://library.marist.edu/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script>
-        $(document).ready(function(){
-        })
-    </script>
-    <style>
-/*
-        table {
-        .table-file-information > tbody > tr {
-            border-top: 1px solid rgba(104, 1, 255, 0);
-        }
-        .table-file-information > tbody > tr:first-child {
-            border-top: 0;
-        }
-        .table-file-information > tbody > tr > td {
-            border-top: 0;
-        }
-        }
-*/
-    </style>
+ 
     <?php
     foreach($paperinfo as $paper)
     $title = $paper['title'];
@@ -85,7 +67,11 @@
     </div>
 
     <div class="container">
-        <table class="table">
+    	<table class="table">
+    		
+    	</table>
+    	
+    	 <table class="table">
 
             <h4 style="font-color:: #b31b1b;"  align="left">Details:</h4>
             <thead>

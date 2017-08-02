@@ -1,7 +1,7 @@
 <!--script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script-->
 <meta charset="utf-8">
 <!--script type="text/javascript" src="http://library.marist.edu/crrs/js/jquery-ui.js"></script-->
-<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+ <script type="text/javascript" src="http://library.marist.edu/js/jquery-ui.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/list.pagination.js/0.1.1/list.pagination.min.js"></script>
@@ -12,12 +12,10 @@
 	span.labelName {color: #b31b1b;font-weight:bold; }
 	.easyPaginateNav a {padding:5px;float: inherit}
 	.easyPaginateNav a.current {font-weight:bold;text-decoration:underline;}
-	@media all and (min-width:1100px) {
-
+	/*@media all and (min-width:992px) {
 		#facets {
 			width: 240px;
 			height: auto;
-			float: left;
 			margin-left: -240px;
 		}
 	}
@@ -32,14 +30,13 @@
 		}
 	}
 */
-
-
 </style>
 <link rel="stylesheet" type="text/css" href="./styles/main.css" />
 <link rel="stylesheet" type="text/css" href="./styles/nprogress.css" />
 
-	<h2>Results:</h2>
-		<div id="facets">
+
+	<div class="row">	
+		<div id="facets" class="page-sidebar col-md-3">
 			<h4>Filter By:</h4>
 			<?php
 				$facets = (array) $results->facet_counts->facet_fields;
@@ -65,7 +62,11 @@
 				}
 			?>
 		</div>
-  <div id="tabs-1" style="margin-left: 42px;">
+		
+	
+	<div class="col-md-9">
+		<h2>Results:</h2>
+		 <div id="tabs-1" >
   	<!--ol id="list"-->
 			<?php
 				foreach ($results->response->docs as $row) {
@@ -94,6 +95,9 @@
 		<div id="pagination"></div>
 </div><!-- Tab 1 ends -->
 </br>
+		
+	</div>
+</div>
 	
 <script type="text/javascript">
 	var acc = document.getElementsByClassName("accordion");

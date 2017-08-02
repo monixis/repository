@@ -25,7 +25,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 	<script type="text/javascript" src="http://library.marist.edu/js/libraryMenu.js"></script>
-	<script type="text/javascript" src="http://library.marist.edu/crrs/js/jquery-ui.js"></script>
+	<script type="text/javascript" src="http://library.marist.edu/js/jquery-ui.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 </head>

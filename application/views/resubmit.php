@@ -9,7 +9,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Honor's Thesis Repository</title>
+    <title>Honors Thesis Program Repository</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
@@ -25,7 +25,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script type="text/javascript" src="http://library.marist.edu/js/libraryMenu.js"></script>
-    <script type="text/javascript" src="http://library.marist.edu/crrs/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="http://library.marist.edu/js/jquery-ui.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <style>
         #loader-img{
@@ -246,13 +246,6 @@ $abstract = $paper['abstract'];
                                             <option  value='1'>Attribution CC BY</option>
 
                                         <?php }?>
-                                        <?php if($license_id ==2){ ?>
-                                            <option selected value='2'>Attribution-NonCommercial CC BY-NC</option>
-                                        <?php } else {?>
-                                            <option  value='2'>Attribution-NonCommercial CC BY-NC</option>
-
-                                        <?php }?>
-                                        <!--option value='2'>Attribution-NonCommercial CC BY-NC</option-->
                                         <?php if($license_id ==3){ ?>
                                         <option selected value='3'>Limit to Marist Users</option>
                                         <?php } else { ?>

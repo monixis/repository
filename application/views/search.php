@@ -13,7 +13,7 @@
 		<title>Honors Program Thesis Repository</title>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 		<!-- Bootstrap core CSS -->
-		<link href="http://library.marist.edu/css/bootstrap.css" rel="stylesheet">
+		<link href="styles/bootstrap.css" rel="stylesheet">
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 		<link href="http://library.marist.edu/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 		<link href="http://library.marist.edu/css/library.css" rel="stylesheet">
@@ -26,11 +26,21 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 		<script type="text/javascript" src="http://library.marist.edu/js/libraryMenu.js"></script>
-		<script type="text/javascript" src="http://library.marist.edu/crrs/js/jquery-ui.js"></script>
+		<script type="text/javascript" src="http://library.marist.edu/js/jquery-ui.js"></script>
 		<link rel="stylesheet" href="http://library.marist.edu/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-		<script src="https://a2.muscache.com/airbnb/static/libs_jquery_2x-4c61948b1a5fa686ed70f7b9bf4a18c9.js" type="text/javascript"></script>
-	<style>
+		<!--script src="https://a2.muscache.com/airbnb/static/libs_jquery_2x-4c61948b1a5fa686ed70f7b9bf4a18c9.js" type="text/javascript"></script-->
+		<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-3375146-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+	<!--style>
 		@media all and (min-width:1000px) {
 
 
@@ -42,7 +52,7 @@
 		}
 		}
 
-	</style>
+	</style-->
 
 	</head>
 	<body>
