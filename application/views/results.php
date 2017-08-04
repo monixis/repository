@@ -39,8 +39,11 @@
 		<div id="facets" class="page-sidebar col-md-3">
 			<h4>Filter By:</h4>
 			<?php
+
 				$facets = (array) $results->facet_counts->facet_fields;
+
 				foreach ($facets as $key => $value){
+					if(sizeof($value)>0){
 			?>
 					<button class="accordion" id="<?php echo $key ; ?>"><?php echo $key ; ?></button>
 					<div class="panel" id="<?php echo $key ; ?>">
@@ -59,6 +62,7 @@
 					?>
 					</div>
 			<?php
+             }
 				}
 			?>
 		</div>

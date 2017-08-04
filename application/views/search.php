@@ -85,6 +85,7 @@
 											<img src="./icons/search.png"  style="height: 25px;"/>
 										</button> </span>
 								</div>
+									<p id="message" style="display: none;color: #B31B1B"> Please enter any text or word to search</p>
 							</div>
 							<div id="selectedFacet" >
 							
@@ -119,8 +120,13 @@
 			var searchTerm = $('input#searchBox').val();
 			var searchTerm = searchTerm.trim();
 			var searchTerm = searchTerm.replace(/ /g,"%20");
-			var resultUrl = "<?php echo base_url("?c=repository&m=searchKeyWords&key=")?>"+searchTerm;
-			$('#searchResults').load(resultUrl);
+			if(searchTerm != "" ) {
+				var resultUrl = "<?php echo base_url("?c=repository&m=searchKeyWords&key=")?>" + searchTerm;
+				$('#searchResults').load(resultUrl);
+			}else{
+				$("p#message").show().delay(3000).fadeOut();
+
+			}
 		});
 		
 		$('#searchBox').keypress(function(e){
@@ -129,8 +135,13 @@
 				var searchTerm = $('input#searchBox').val();
 				var searchTerm = searchTerm.trim();
 				var searchTerm = searchTerm.replace(/ /g,"%20");
-				var resultUrl = "<?php echo base_url("?c=repository&m=searchKeyWords&key=")?>"+searchTerm;
-				$('#searchResults').load(resultUrl);
+				if(searchTerm != "") {
+					var resultUrl = "<?php echo base_url("?c=repository&m=searchKeyWords&key=")?>" + searchTerm;
+					$('#searchResults').load(resultUrl);
+				}else{
+					$("p#message").show().delay(3000).fadeOut();
+
+				}
 			}
 		});
 		$(document).ready(function() {
