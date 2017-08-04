@@ -120,7 +120,11 @@
             </tr>
 
             </tbody></table></br>
+        <div align="right">
+        <a href="<?php echo $url ?>"" target="_blank"><img src="images/download.png" style="width: 30px; margin-top: 4px;"/>Download(PDF)</a>
+        </div></br></br>
         <iframe align="center" src="<?php echo $url ?>"  style=" width:100%; height:700px ;frameborder="0"></iframe></br></br>
+
 </div>
 </div>
 <br>
