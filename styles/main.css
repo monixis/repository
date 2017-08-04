@@ -5,6 +5,28 @@ body, html {
 	font-size: 14px;
 }
 
+/* 
+Generic Styling, for Desktops/Laptops 
+*/
+table#resTable { 
+  width: 1000px; 
+  border-collapse: collapse; 
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+th { 
+  background: #333; 
+  color: white; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  text-align: left; 
+}
+
 li.results {
     font: 18px Helvetica, Verdana, sans-serif;
     border-bottom: 1px solid #ccc;
