@@ -67,16 +67,8 @@
     </div>
 
     <div class="container">
-    	<table class="table">
-    		
-    	</table>
-    	
     	 <table class="table">
-
             <h4 style="font-color:: #b31b1b;"  align="left">Details:</h4>
-            <thead>
-            <tr></tr>
-            </thead></br>
             <tbody>
             <!--tr>
                 <td class ="col-md-2">Title:</td><td> <!--?php echo $title ?></td>

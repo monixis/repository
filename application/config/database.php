@@ -65,11 +65,30 @@ $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;*/
 
 // comment below section to disconnect with mysql db
-$db['default']['dsn'] = "mysql:host=148.100.181.189;port=3306;dbname=repoisitory";
+/*$db['default']['dsn'] = "mysql:host=148.100.181.189;port=3306;dbname=repoisitory";
 $db['default']['hostname'] = '148.100.181.189';
 $db['default']['port'] = '3306';
 $db['default']['username'] = 'maristarchives';
 $db['default']['password'] = 'F27C44V37';
+$db['default']['database'] = 'repository';
+$db['default']['dbdriver'] = 'mysqli';
+$db['default']['dbprefix'] = '';
+$db['default']['pconnect'] = TRUE;
+$db['default']['db_debug'] = TRUE;
+$db['default']['cache_on'] = FALSE;
+$db['default']['cachedir'] = '';
+$db['default']['char_set'] = 'utf8';
+$db['default']['dbcollat'] = 'utf8_general_ci';
+$db['default']['swap_pre'] = '';
+$db['default']['encrypt'] = '';
+$db['default']['autoinit'] = TRUE;
+$db['default']['stricton'] = FALSE;*/
+
+$db['default']['dsn'] = "mysql:host=db-1.archive.library.marist.edu;port=3306;dbname=repository";
+$db['default']['hostname'] = 'db-1.archive.library.marist.edu';
+$db['default']['port'] = '3306';
+$db['default']['username'] = 'kffh6';
+$db['default']['password'] = 'mcl17782';
 $db['default']['database'] = 'repository';
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
