@@ -35,7 +35,7 @@
 <link rel="stylesheet" type="text/css" href="./styles/nprogress.css" />
 
 
-	<div class="row">	
+	<div class="row">
 		<div id="facets" class="page-sidebar col-md-3">
 			<h4>Filter By:</h4>
 			<?php
@@ -66,8 +66,8 @@
 				}
 			?>
 		</div>
-		
-	
+
+
 	<div class="col-md-9">
 		<h2>Results:</h2>
 		 <div id="tabs-1" >
@@ -94,15 +94,15 @@
 				</li>
 			<?php
 				}
-			?>	
+			?>
 		<!--/ol></br-->
 		<div id="pagination"></div>
 </div><!-- Tab 1 ends -->
 </br>
-		
+
 	</div>
 </div>
-	
+
 <script type="text/javascript">
 	var acc = document.getElementsByClassName("accordion");
 	var i;
@@ -125,7 +125,7 @@
     $('a.tags').click(function(){
         var searchTerm = $('input#searchBox').val();
         var selectedTag = ($(this).parents('div.panel').attr('id')) + ' : ' + ($(this).text().substr(0, $(this).text().indexOf('-')));
-        $('#selectedFacet').append('<button class="taglist" style="border: 1px solid #cccccc; background: #eeeeee; padding: 5px; margin-right: 10px; margin-top: 5px;">'+ selectedTag +'<a href="#" class="remove" id="'+ selectedTag +'" style="margin-left:10px;"> X </a></button>');
+        $('#selectedFacet').append('<div class="taglist" style="border: 1px solid #cccccc; background: #eeeeee; padding: 5px; margin-right: 10px; margin-top: 5px; width: ' + selectedTag.length * 9 + 'px;">'+ selectedTag +'<a href="#" class="remove" id="'+ selectedTag +'" style="margin-left:10px; float:right;"> X </a></div>');
         $('input#queryTag').val($('input#queryTag').val() + "fq=" + selectedTag);
         var queryTag = $('input#queryTag').val();
         searchTerm = searchTerm + queryTag;
@@ -141,7 +141,7 @@
     $('#selectedFacet').on('click', '.remove', function() {
         var searchTerm = $('input#searchBox').val();
         var unselectedTag ="fq=" + $(this).attr('id');
-        $(this).closest('button.taglist').remove();
+        $(this).closest('div.taglist').remove();
         $('input#queryTag').val($('input#queryTag').val().replace(unselectedTag, ' '));
         var queryTag = $('input#queryTag').val();
         searchTerm = searchTerm + queryTag;
@@ -158,8 +158,7 @@
         elementsPerPage: 10
         /* effect: 'climb'*/
   });
-   
+
 
 
 </script>
-
