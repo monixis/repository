@@ -145,5 +145,23 @@
 			}
 		});
 		
+		$(document).ready(function() {
+			var keywords = [];<?php
+			foreach($keywords as $row){
+			?>
+			keywords.push('<?php echo $row->keywords; ?>');<?php } ?>
+			$("#searchBox").autocomplete({
+				source: keywords
+			});
+			//$('input#searchBox')
+			var searchTerm = "<?php echo $searchString ?>";
+			document.getElementById('searchBox').value =searchTerm;
+			var searchTerm = searchTerm.replace(/ /g, "%20");
+			if(searchTerm != "") {
+				var resultUrl = "<?php echo base_url("?c=repository&m=searchKeyWords&key=")?>" + searchTerm;
+				$('#searchResults').load(resultUrl);
+			}
+		});
+		
 </script>
 </html>
