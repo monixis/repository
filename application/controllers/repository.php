@@ -261,10 +261,11 @@ class repository extends CI_Controller
   public function searchKeyWords()
  {
     $key = $this -> input -> get('key');
-    $key = trim($key);
+    // $key = trim($key);
 	$key = str_replace(" ","%20", $key);
 	$key = str_replace("fq","&fq", $key);
-    $resultsLink = "http://35.162.165.138:8983/solr/repository/select?facet.field=Collection&facet.field=Year&facet.field=Department&facet.field=Tags&facet=on&indent=on&q=".$key."&wt=json&rows=1000";
+    $resultsLink = "http://35.162.165.138:8983/solr/repository/select?facet.field=Collection&facet.field=Year&facet.field=Department&facet.field=Tags&facet=true&indent=on&q=".$key."&wt=json&rows=1000";
+    // echo $resultsLink;
     $json = file_get_contents($resultsLink);
     $data['results'] = json_decode($json);
 	//$data['searchTerm'] = $key;
@@ -1075,7 +1076,7 @@ class repository extends CI_Controller
         }
 
     }*/
-    
+
     function admin(){
 
         $sid = SID; //Session ID #
@@ -1157,5 +1158,5 @@ class repository extends CI_Controller
     }
 
 	}
-	
+
 ?>
