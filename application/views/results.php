@@ -74,15 +74,15 @@
   	<!--ol id="list"-->
 			<?php
 				foreach ($results->response->docs as $row) {
-					$title = $row -> Title;
-					$year = $row -> Year;
-					$date = $row -> Date;
+					$title = $row -> Title[0];
+					$year = $row -> Year[0];
+					$date = $row -> Date[0];
 					$collection = $row -> Collection[0];
-					$id = $row -> unitid;
-					$abstract = $row -> abstract;
-					$author = $row -> Publisher;
+					$id = $row -> unitid[0];
+					$abstract = $row -> abstract[0];
+					$author = $row -> Publisher[0];
 					$department = $row -> Department[0];
-					$display = $row -> Display;
+					$display = $row -> Display[0];
 			?>
 				<li class="results" style="height: auto; padding: 10px;">
 						<a href="<?php echo base_url("?c=repository&m=fileInfo&id=".$id)?>" target="_blank"><?php echo $title; ?> -  <?php echo $year; ?></a></br>

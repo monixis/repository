@@ -264,7 +264,7 @@ class repository extends CI_Controller
     $key = trim($key);
 	$key = str_replace(" ","%20", $key);
 	$key = str_replace("fq","&fq", $key);
-    $resultsLink = "http://35.162.165.138:8983/solr/repository/select?facet.field=Collection&facet.field=Year&facet.field=Department&facet.field=Tags&facet=on&indent=on&q=".$key."&wt=json&rows=1000";
+    $resultsLink = "http://35.162.165.138:8983/solr/repo/select?facet.field=Collection&facet.field=Year&facet.field=Department&facet=on&indent=on&q=".$key."&wt=json&rows=1000";
     $json = file_get_contents($resultsLink);
     $data['results'] = json_decode($json);
 	//$data['searchTerm'] = $key;
@@ -280,7 +280,7 @@ class repository extends CI_Controller
         $config['smtp_host'] = "tls://smtp.googlemail.com";
         $config['smtp_port'] = "465";
         $config['smtp_user'] = "maristarchives@gmail.com";
-        $config['smtp_pass'] = "MaristArchives2017";
+        $config['smtp_pass'] = "redfoxesArchives";
         $config['charset'] = "utf-8";
         $config['mailtype'] = "html";
         $config['newline'] = "\r\n";
@@ -344,7 +344,7 @@ class repository extends CI_Controller
         $config['smtp_host'] = "tls://smtp.googlemail.com";
         $config['smtp_port'] = "465";
         $config['smtp_user'] = "maristarchives@gmail.com";
-        $config['smtp_pass'] = "MaristArchives2017";
+        $config['smtp_pass'] = "redfoxesArchives";
         $config['charset'] = "utf-8";
         $config['mailtype'] = "html";
         $config['newline'] = "\r\n";
@@ -640,7 +640,7 @@ class repository extends CI_Controller
             $config['smtp_host'] = "tls://smtp.googlemail.com";
             $config['smtp_port'] = "465";
             $config['smtp_user'] = "maristarchives@gmail.com";
-            $config['smtp_pass'] = "MaristArchives2017";
+            $config['smtp_pass'] = "redfoxesArchives";
             $config['charset'] = "utf-8";
             $config['mailtype'] = "html";
             $config['newline'] = "\r\n";
@@ -698,7 +698,7 @@ class repository extends CI_Controller
                 $config['smtp_host'] = "tls://smtp.googlemail.com";
                 $config['smtp_port'] = "465";
                 $config['smtp_user'] = "maristarchives@gmail.com";
-                $config['smtp_pass'] = "MaristArchives2017";
+                $config['smtp_pass'] = "redfoxesArchives";
                 $config['charset'] = "utf-8";
                 $config['mailtype'] = "html";
                 $config['newline'] = "\r\n";
